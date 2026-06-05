@@ -10,7 +10,6 @@
 <style>
 :root{
   --accent:#7C3AED;
-  --accent2:color-mix(in srgb,var(--accent) 15%,transparent);
   --bg:#FAFAFA;--bg2:#F0EEF8;--text:#111111;--muted:#555555;--border:#D0C8E8;--card:#FFFFFF;
   --radius:12px;--radius-sm:6px;
 }
@@ -18,7 +17,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
 
-/* NAV — bold accent bar */
+/* NAV — bold 3px accent top border */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,0.96);backdrop-filter:blur(12px);border-bottom:3px solid var(--accent);}
 .nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
 .nav-name{font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--text);text-decoration:none;letter-spacing:-0.01em;}
@@ -30,19 +29,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,
 
 .container{max-width:1000px;margin:0 auto;padding:0 2rem;}
 
-/* HERO — editorial split layout */
-#hero{min-height:100vh;display:grid;grid-template-columns:5px 1fr;padding-top:63px;}
-.hero-stripe{background:var(--accent);}
-.hero-content{display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;}
+/* HERO — true left stripe via flex, not grid */
+#hero{min-height:100vh;display:flex;padding-top:63px;}
+.hero-stripe{
+  width:6px;
+  flex-shrink:0;
+  background:var(--accent);
+  min-height:100%;
+}
+.hero-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:4rem 3rem;
+}
 .hero-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
 .hero-name{font-family:'Instrument Serif',serif;font-size:clamp(3rem,7vw,6rem);line-height:0.95;color:var(--text);margin-bottom:0.5rem;letter-spacing:-0.02em;}
 .hero-name em{font-style:italic;color:var(--accent);}
 .hero-role{font-size:1rem;font-weight:500;color:var(--muted);margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:2.5rem;}
 .hero-bio{font-size:1rem;color:var(--muted);line-height:1.85;}
-.hero-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.hero-photo img{width:100%;height:100%;object-fit:cover;}
+
+/* PHOTO — fixed size, no overflow */
+.hero-photo{
+  width:100%;
+  max-width:260px;
+  height:320px;
+  border-radius:var(--radius);
+  background:var(--bg2);
+  border:1px solid var(--border);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.hero-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
 .photo-placeholder{font-family:'Instrument Serif',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
+
 .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;}
 .meta-item{padding:1rem;background:var(--bg2);border-radius:var(--radius-sm);border-left:3px solid var(--accent);}
 .meta-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;}
@@ -54,7 +85,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,
 .btn-outline{background:transparent;color:var(--text);border-color:var(--border);}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
 
-/* SECTION SHARED */
+/* SECTIONS */
 section{padding:5rem 0;}
 .section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:2.5rem;}
 .section-num{font-family:'Instrument Serif',serif;font-size:3rem;color:var(--border);line-height:1;flex-shrink:0;}
@@ -75,7 +106,7 @@ section{padding:5rem 0;}
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.2s;}
 .project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,0.08);}
-.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;}
+.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 .project-img img{width:100%;height:100%;object-fit:cover;}
 .img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;width:100%;height:100%;border:2px dashed var(--border);}
 .img-placeholder-icon{font-size:1.5rem;opacity:0.3;}
@@ -100,26 +131,40 @@ section{padding:5rem 0;}
 .info-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;}
 .info-value{font-size:0.9rem;color:var(--text);font-weight:500;}
 
-/* HOVER ANIMATIONS */
+/* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 .hover-lift{transition:transform 0.2s;}
 .hover-lift:hover{transform:translateY(-3px);}
 
+/* FOOTER */
 footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
 .footer-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-copy{font-size:0.75rem;color:var(--muted);}
-.footer-credit a{font-size:0.75rem;color:var(--accent);text-decoration:none;font-weight:600;}
+.footer-right{display:flex;align-items:center;gap:1rem;}
+.footer-back{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:var(--accent);color:#fff;
+  font-size:0.82rem;font-weight:600;
+  padding:0.5rem 1rem;border-radius:var(--radius-sm);
+  text-decoration:none;cursor:pointer;border:none;
+  font-family:'Instrument Sans',sans-serif;
+  transition:background 0.2s,transform 0.15s;
+}
+.footer-back:hover{background:color-mix(in srgb,var(--accent) 85%,black);transform:translateY(-1px);}
+.footer-credit{font-size:0.75rem;color:var(--muted);}
 
 @media(max-width:768px){
-  #hero{grid-template-columns:4px 1fr;}
+  #hero{flex-direction:column;}
+  .hero-stripe{width:100%;height:5px;min-height:unset;}
   .hero-grid{grid-template-columns:1fr;}
-  .hero-meta{grid-template-columns:1fr 1fr;}
+  .hero-photo{max-width:100%;height:280px;}
   .skills-grid{grid-template-columns:1fr 1fr;}
   .projects-grid{grid-template-columns:1fr;}
   .contact-layout{grid-template-columns:1fr;}
   .nav-links{display:none;}
   .hero-content{padding:2rem 1.5rem;}
+  .hero-meta{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -137,7 +182,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-stripe"></div>
   <div class="hero-content">
@@ -157,8 +201,8 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="hero-photo">
-        
-        <img src="headshot_noa.jpg" alt="Noa Reyes" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="photo-placeholder" style="display:none">N</div>
+        <img src="headshot_noa.jpg" alt="Noa Reyes" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="display:none">N</div>
       </div>
     </div>
     <div class="hero-meta">
@@ -169,7 +213,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <div class="section-header fade-in">
@@ -220,7 +263,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-header fade-in">
@@ -233,7 +275,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
     <div class="projects-grid">
       <div class="project-card fade-in">
         <div class="project-img">
-          <!-- Replace with: <img src="project1_noa.jpg" alt="DCF Model"> -->
           <div class="img-placeholder">
             <div class="img-placeholder-icon">🖼</div>
             <div class="img-placeholder-text">Project image goes here</div>
@@ -247,7 +288,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
       </div>
       <div class="project-card fade-in">
         <div class="project-img">
-          <!-- Replace with: <img src="project2_noa.jpg" alt="M&A Case Study"> -->
           <div class="img-placeholder">
             <div class="img-placeholder-icon">🖼</div>
             <div class="img-placeholder-text">Project image goes here</div>
@@ -261,7 +301,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
       </div>
       <div class="project-card fade-in">
         <div class="project-img">
-          <!-- Replace with: <img src="project3_noa.jpg" alt="Portfolio Analysis"> -->
           <div class="img-placeholder">
             <div class="img-placeholder-icon">🖼</div>
             <div class="img-placeholder-text">Project image goes here</div>
@@ -275,7 +314,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
       </div>
       <div class="project-card fade-in">
         <div class="project-img">
-          <!-- Replace with: <img src="project4_noa.jpg" alt="Fixed Income Research"> -->
           <div class="img-placeholder">
             <div class="img-placeholder-icon">🖼</div>
             <div class="img-placeholder-text">Project image goes here</div>
@@ -291,7 +329,6 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="section-header fade-in">
@@ -331,7 +368,10 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Noa Reyes</div>
-    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank" rel="noopener noreferrer">Built by Own Your Page ↗</a></div>
+    <div class="footer-right">
+      <button class="footer-back" onclick="window.opener ? window.close() : window.location.href='index.html'">← Back to Own Your Page</button>
+      <div class="footer-credit">Built by Own Your Page</div>
+    </div>
   </div>
 </footer>
 
