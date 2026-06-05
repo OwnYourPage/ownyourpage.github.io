@@ -157,8 +157,8 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="hero-photo">
-        <!-- Replace with: <img src="headshot_noa.jpg" alt="Noa Reyes"> -->
-        <div class="photo-placeholder">N</div>
+        
+        <img src="headshot_noa.jpg" alt="Noa Reyes" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="photo-placeholder" style="display:none">N</div>
       </div>
     </div>
     <div class="hero-meta">
@@ -331,7 +331,7 @@ footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Noa Reyes</div>
-    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank">Built by Own Your Page ↗</a></div>
+    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank" rel="noopener noreferrer">Built by Own Your Page ↗</a></div>
   </div>
 </footer>
 
