@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theo Callum — Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#7C3AED;
+  --bg:#F7F3ED;--bg2:#EDE8E0;--text:#2C2418;--muted:#7A6E5F;--border:#D8D0C4;--card:#FFFFFF;
+  --radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,243,237,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
+.nav-name{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--text);text-decoration:none;font-weight:500;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+
+.container{max-width:900px;margin:0 auto;padding:0 2rem;}
+section{padding:5rem 0;}
+.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);margin-bottom:2rem;line-height:1.2;font-weight:500;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;}
+.hero-inner{display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:center;width:100%;}
+.hero-photo{width:240px;height:300px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;}
+.photo-placeholder{font-family:'Fraunces',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
+.hero-status{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;background:color-mix(in srgb,var(--accent) 10%,transparent);padding:0.3rem 0.75rem;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-name{font-family:'Fraunces',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;color:var(--text);margin-bottom:0.5rem;font-weight:500;}
+.hero-title{font-size:1rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300;}
+.hero-bio{font-size:0.98rem;color:var(--muted);max-width:480px;line-height:1.85;margin-bottom:2rem;}
+.hero-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.link-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;background:var(--card);}
+.link-pill:hover{border-color:var(--accent);color:var(--accent);}
+.link-pill.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.link-pill.primary:hover{background:color-mix(in srgb,var(--accent) 85%,black);}
+
+/* SKILLS */
+#skills{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;transition:all 0.2s;}
+.skill-card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--border));}
+.skill-category{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.skill-list{display:flex;flex-direction:column;gap:0.4rem;}
+.skill-item{font-size:0.85rem;color:var(--muted);}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.2s;}
+.project-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 30%,var(--border));}
+.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;}
+.project-img img{width:100%;height:100%;object-fit:cover;}
+.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;width:100%;height:100%;border:2px dashed var(--border);}
+.img-placeholder-icon{font-size:1.5rem;opacity:0.3;}
+.img-placeholder-text{font-size:0.75rem;color:var(--muted);opacity:0.6;}
+.project-info{padding:1.25rem;}
+.project-name{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--text);margin-bottom:0.35rem;font-weight:500;}
+.project-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;}
+.project-tags{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.tag{font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:20px;background:var(--bg2);color:var(--muted);border:1px solid var(--border);}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.contact-inner{max-width:520px;}
+.contact-text{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2rem;}
+.contact-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
+.footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.75rem;color:var(--muted);}
+.footer-credit a{font-size:0.75rem;color:var(--accent);text-decoration:none;}
+
+@media(max-width:680px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-photo{display:none;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Theo Callum</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-photo">
+        <!-- Replace with: <img src="headshot_theo.jpg" alt="Theo Callum"> -->
+        <div class="photo-placeholder">T</div>
+      </div>
+      <div>
+        <div class="hero-status"><span class="status-dot"></span> Open to Summer 2025 internships</div>
+        <h1 class="hero-name">Theo Callum</h1>
+        <div class="hero-title">Marketing · Boston University · Class of 2025</div>
+        <p class="hero-bio">Passionate about brand strategy, consumer psychology, and the intersection of data and creativity. Looking for Summer 2025 marketing internships in New York or Boston.</p>
+        <div class="hero-links">
+          <a href="#" class="link-pill primary">Download Resume</a>
+          <a href="#" class="link-pill">LinkedIn</a>
+          <a href="#contact" class="link-pill">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <span class="section-label fade-in">Skills</span>
+    <h2 class="section-title fade-in">What I bring to the table</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-category">Strategy</div>
+        <div class="skill-list">
+          <div class="skill-item">Brand positioning</div>
+          <div class="skill-item">Market research</div>
+          <div class="skill-item">Consumer behavior</div>
+          <div class="skill-item">Campaign planning</div>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-category">Digital</div>
+        <div class="skill-list">
+          <div class="skill-item">Social media marketing</div>
+          <div class="skill-item">Google Analytics</div>
+          <div class="skill-item">Email marketing</div>
+          <div class="skill-item">SEO basics</div>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-category">Tools</div>
+        <div class="skill-list">
+          <div class="skill-item">Canva & Figma</div>
+          <div class="skill-item">HubSpot</div>
+          <div class="skill-item">Excel / Google Sheets</div>
+          <div class="skill-item">Hootsuite</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <span class="section-label fade-in">Projects</span>
+    <h2 class="section-title fade-in">Selected work</h2>
+    <div class="projects-grid">
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project1_theo.jpg" alt="Brand Audit Project"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Brand Audit — Local Coffee Chain</div>
+          <div class="project-desc">Conducted a full brand audit for a 3-location Boston coffee chain, identifying positioning gaps and delivering a 20-page strategic report with actionable recommendations.</div>
+          <div class="project-tags"><span class="tag">Brand Strategy</span><span class="tag">Research</span><span class="tag">Presentation</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project2_theo.jpg" alt="Social Campaign Project"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Instagram Growth Campaign</div>
+          <div class="project-desc">Designed and executed a 6-week Instagram content strategy for a student organization, growing followers from 400 to 1,200 and increasing average engagement by 65%.</div>
+          <div class="project-tags"><span class="tag">Social Media</span><span class="tag">Content</span><span class="tag">Analytics</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project3_theo.jpg" alt="Market Research Project"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Gen Z Consumer Report</div>
+          <div class="project-desc">Led a team of 4 in producing a primary research report on Gen Z purchasing behavior in sustainable fashion, surveying 200+ respondents and presenting findings to faculty.</div>
+          <div class="project-tags"><span class="tag">Research</span><span class="tag">Data Analysis</span><span class="tag">Reporting</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project4_theo.jpg" alt="Email Campaign Project"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Email Re-engagement Campaign</div>
+          <div class="project-desc">Designed a 5-email re-engagement sequence for a nonprofit's lapsed donor list using HubSpot, achieving a 22% open rate against the 14% industry average.</div>
+          <div class="project-tags"><span class="tag">Email Marketing</span><span class="tag">HubSpot</span><span class="tag">Copywriting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner fade-in">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="contact-text">I'm actively looking for Summer 2025 marketing internships in New York or Boston. If you're working on something interesting or want to connect, I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:theo@example.com" class="link-pill primary">Email me</a>
+        <a href="#" class="link-pill">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2025 Theo Callum</div>
+    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank">Built by Own Your Page ↗</a></div>
+  </div>
+</footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
