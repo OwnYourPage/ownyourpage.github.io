@@ -508,7 +508,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.9rem;">Every site is personalized to you — your content, your color, your style. Click any example to see a live demo.</p>
     </div>
     <div class="portfolio-grid">
-      <a href="template-starter.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-starter.html')">
+      <a href="template-starter.html" class="portfolio-card fade-in" onclick="return openExample('template-starter.html')">
         <div class="portfolio-thumb portfolio-thumb-a">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#f0f0f0;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
@@ -522,7 +522,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
           <div class="portfolio-pkg">Single page · Bio, links, resume</div>
         </div>
       </a>
-      <a href="template-internship-ready.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-internship-ready.html')">
+      <a href="template-internship-ready.html" class="portfolio-card fade-in" onclick="return openExample('template-internship-ready.html')">
         <div class="portfolio-thumb portfolio-thumb-c">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#2C2418;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Theo Callum</div>
@@ -536,7 +536,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
           <div class="portfolio-pkg">Skills, projects, 4 images</div>
         </div>
       </a>
-      <a href="template-stand-out.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-stand-out.html')">
+      <a href="template-stand-out.html" class="portfolio-card fade-in" onclick="return openExample('template-stand-out.html')">
         <div class="portfolio-thumb portfolio-thumb-e">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#111;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Noa Reyes</div>
@@ -656,9 +656,9 @@ function closeDropdown(){
 document.addEventListener('click',e=>{if(!e.target.closest('.style-selector'))closeDropdown();});
 function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
 
-/* Open example in new tab — closes that tab when user navigates back */
+/* Open example in new tab via JS so window.opener is set — allows window.close() on template pages */
 function openExample(url){
-  const w=window.open(url,'_blank','noopener,noreferrer');
+  window.open(url,'_blank');
   return false;
 }
 
