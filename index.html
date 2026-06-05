@@ -25,7 +25,6 @@ body.style-a{--bg:var(--a-bg);--bg2:var(--a-bg2);--text:var(--a-text);--muted:va
 body.style-c{--bg:var(--c-bg);--bg2:var(--c-bg2);--text:var(--c-text);--muted:var(--c-muted);--border:var(--c-border);--card:var(--c-card);--nav-bg:var(--c-nav);}
 body.style-e{--bg:var(--e-bg);--bg2:var(--e-bg2);--text:var(--e-text);--muted:var(--e-muted);--border:var(--e-border);--card:var(--e-card);--nav-bg:var(--e-nav);}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background var(--transition),border-color var(--transition);}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem;}
 .nav-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);text-decoration:none;transition:color var(--transition);white-space:nowrap;}
@@ -50,7 +49,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bac
 .swatch:hover{transform:scale(1.2);}
 .swatch.active{border-color:var(--text);transform:scale(1.15);}
 
-/* LAYOUT */
 .container{max-width:1100px;margin:0 auto;padding:0 2rem;}
 section{padding:6rem 0;}
 
@@ -70,9 +68,10 @@ section{padding:6rem 0;}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
 .hero-visual{display:flex;justify-content:center;align-items:center;}
 
-/* HERO CAROUSEL */
+/* CAROUSEL */
 .hero-carousel{width:100%;max-width:380px;position:relative;}
-.hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:background var(--transition),border-color var(--transition),opacity 0.5s,transform 0.5s;box-shadow:0 20px 60px rgba(0,0,0,0.12);position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(12px);pointer-events:none;}
+.carousel-track{position:relative;min-height:260px;}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:background var(--transition),border-color var(--transition),opacity 0.7s ease,transform 0.7s ease;box-shadow:0 20px 60px rgba(0,0,0,0.12);position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(10px);pointer-events:none;will-change:opacity,transform;}
 .hero-card.active{opacity:1;transform:translateY(0);pointer-events:all;position:relative;}
 .hero-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
 .hero-avatar{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-size:1.4rem;font-family:'DM Serif Display',serif;flex-shrink:0;overflow:hidden;}
@@ -85,15 +84,15 @@ section{padding:6rem 0;}
 .hero-badge{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;padding:0.25rem 0.6rem;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);border-radius:20px;font-weight:500;margin-bottom:1rem;}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.carousel-dots{display:flex;gap:6px;justify-content:center;margin-top:1rem;}
-.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.2s;border:none;}
-.carousel-dot.active{background:var(--accent);width:18px;border-radius:3px;}
+.carousel-dots{display:flex;gap:6px;justify-content:center;margin-top:1.25rem;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.3s;border:none;padding:0;}
+.carousel-dot.active{background:var(--accent);width:20px;border-radius:3px;}
 
 /* ABOUT */
 #about{background:var(--bg2);transition:background var(--transition);}
 .about-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center;}
 .about-photo-wrap{position:relative;}
-.about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background var(--transition);}
+.about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background var(--transition);}
 .about-photo img{width:100%;height:100%;object-fit:cover;}
 .about-photo-placeholder{font-family:'DM Serif Display',serif;font-size:4rem;color:var(--accent);opacity:0.3;}
 .about-tag{position:absolute;bottom:1rem;left:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.5rem 0.85rem;font-size:0.78rem;font-weight:500;color:var(--text);transition:background var(--transition);}
@@ -141,25 +140,18 @@ section{padding:6rem 0;}
 .preview-screen-a{background:#0a0f1a;}
 .preview-screen-c{background:#F7F3ED;}
 .preview-screen-e{background:#FAFAFA;}
+.preview-screen-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);}
 .preview-mini-nav{height:8px;border-radius:2px;margin-bottom:0.6rem;opacity:0.3;}
 .preview-mini-title{height:12px;border-radius:2px;margin-bottom:0.4rem;width:60%;}
 .preview-mini-sub{height:7px;border-radius:2px;margin-bottom:0.3rem;width:80%;opacity:0.4;}
 .preview-mini-sub2{height:7px;border-radius:2px;margin-bottom:0.8rem;width:65%;opacity:0.4;}
 .preview-mini-btn{height:18px;border-radius:4px;width:80px;}
-.preview-a .preview-mini-nav{background:#f0f0f0;}
-.preview-a .preview-mini-title{background:#f0f0f0;}
-.preview-a .preview-mini-sub{background:#8892a4;}
-.preview-a .preview-mini-sub2{background:#8892a4;}
-.preview-c .preview-mini-nav{background:#2C2418;}
-.preview-c .preview-mini-title{background:#2C2418;}
-.preview-c .preview-mini-sub{background:#7A6E5F;}
-.preview-c .preview-mini-sub2{background:#7A6E5F;}
-.preview-e .preview-mini-nav{background:#111;}
-.preview-e .preview-mini-title{background:#111;}
-.preview-e .preview-mini-sub{background:#555;}
-.preview-e .preview-mini-sub2{background:#555;}
-/* Bold Accent preview gets accent stripe */
-.preview-screen-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);}
+.preview-a .preview-mini-nav,.preview-a .preview-mini-title{background:#f0f0f0;}
+.preview-a .preview-mini-sub,.preview-a .preview-mini-sub2{background:#8892a4;}
+.preview-c .preview-mini-nav,.preview-c .preview-mini-title{background:#2C2418;}
+.preview-c .preview-mini-sub,.preview-c .preview-mini-sub2{background:#7A6E5F;}
+.preview-e .preview-mini-nav,.preview-e .preview-mini-title{background:#111;}
+.preview-e .preview-mini-sub,.preview-e .preview-mini-sub2{background:#555;}
 .preview-footer{padding:0.85rem 1rem;background:var(--card);border-top:1px solid var(--border);transition:background var(--transition),border-color var(--transition);}
 .preview-name{font-weight:600;font-size:0.85rem;color:var(--text);transition:color var(--transition);}
 .preview-desc{font-size:0.72rem;color:var(--muted);margin-top:2px;transition:color var(--transition);}
@@ -183,17 +175,21 @@ section{padding:6rem 0;}
 /* PORTFOLIO */
 #portfolio{background:var(--bg2);transition:background var(--transition);}
 .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
-.portfolio-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);text-decoration:none;display:block;}
+.portfolio-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);display:block;text-decoration:none;position:relative;}
 .portfolio-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,var(--border));}
-.portfolio-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;overflow:hidden;}
+.portfolio-thumb{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .portfolio-thumb-a{background:#0a0f1a;}
 .portfolio-thumb-c{background:#F7F3ED;}
-.portfolio-thumb-e{background:#FAFAFA;border-bottom:1px solid #E0E0E0;position:relative;}
+.portfolio-thumb-e{background:#FAFAFA;border-bottom:1px solid #D0C8E8;}
 .portfolio-thumb-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent);}
 .portfolio-info{padding:1rem 1.25rem;}
 .portfolio-style{font-size:0.72rem;color:var(--accent);font-weight:500;margin-bottom:0.25rem;letter-spacing:0.05em;text-transform:uppercase;}
 .portfolio-title{font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.25rem;transition:color var(--transition);}
 .portfolio-pkg{font-size:0.75rem;color:var(--muted);}
+/* Back to OYP button overlay */
+.portfolio-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.25s;}
+.portfolio-card:hover .portfolio-overlay{background:rgba(0,0,0,0.45);opacity:1;}
+.portfolio-overlay-btn{background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;pointer-events:none;}
 
 /* FAQ */
 .faq-list{max-width:720px;margin:3rem auto 0;}
@@ -215,7 +211,6 @@ section{padding:6rem 0;}
 .contact-email a{color:var(--accent);text-decoration:none;}
 .contact-note{font-size:0.78rem;color:var(--muted);opacity:0.7;}
 
-/* FOOTER */
 footer{border-top:1px solid var(--border);padding:2rem;transition:border-color var(--transition);}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-logo{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);transition:color var(--transition);}
@@ -224,7 +219,6 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .footer-links a{font-size:0.8rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--accent);}
 
-/* MOBILE */
 @media(max-width:768px){
   .nav-links{display:none;}
   .hero-inner{grid-template-columns:1fr;}
@@ -234,11 +228,8 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   .preview-grid{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr 1fr;}
   .portfolio-grid{grid-template-columns:1fr;}
-  .nav-inner{padding:0 1rem;}
-  .container{padding:0 1rem;}
+  .nav-inner,.container{padding:0 1rem;}
 }
-
-/* FADE IN */
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 </style>
@@ -265,17 +256,14 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         </button>
         <div class="style-dropdown" id="styleDropdown">
           <div class="style-option active" onclick="setStyle('a','Dark Minimal',this)">
-            <div class="style-swatch" style="background:#0a0f1a;border:1px solid #333"></div>
-            Dark Minimal
+            <div class="style-swatch" style="background:#0a0f1a;border:1px solid #333"></div>Dark Minimal
           </div>
           <div class="style-option" onclick="setStyle('c','Warm Cream',this)">
-            <div class="style-swatch" style="background:#F7F3ED;border:1px solid #D8D0C4"></div>
-            Warm Cream
+            <div class="style-swatch" style="background:#F7F3ED;border:1px solid #D8D0C4"></div>Warm Cream
             <span class="lock">Internship Ready+</span>
           </div>
           <div class="style-option" onclick="setStyle('e','Bold Accent',this)">
-            <div class="style-swatch" style="background:#FAFAFA;border:1px solid #D0C8E8"></div>
-            Bold Accent
+            <div class="style-swatch" style="background:#FAFAFA;border:1px solid #D0C8E8"></div>Bold Accent
             <span class="lock">Stand Out</span>
           </div>
         </div>
@@ -284,7 +272,6 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="container">
@@ -300,58 +287,39 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       </div>
       <div class="hero-visual">
         <div class="hero-carousel">
-          <!-- Card 1: Zara -->
-          <div class="hero-card active" id="card-0">
-            <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
-            <div class="hero-card-header">
-              <div class="hero-avatar">Z</div>
-              <div>
-                <div class="hero-card-name">Zara Voss</div>
-                <div class="hero-card-title">Computer Science · UC Berkeley · 2026</div>
+          <div class="carousel-track">
+            <div class="hero-card active" id="card-0">
+              <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
+              <div class="hero-card-header">
+                <div class="hero-avatar"><img src="headshot_zara.jpg" alt="Zara Voss" onerror="this.parentElement.textContent='Z'"></div>
+                <div><div class="hero-card-name">Zara Voss</div><div class="hero-card-title">Computer Science · UC Berkeley · 2026</div></div>
+              </div>
+              <p class="hero-card-bio">Building full-stack apps and exploring systems programming. Seeking Summer 2026 SWE internships in the Bay Area.</p>
+              <div class="hero-card-links">
+                <span class="hero-link-pill">LinkedIn</span><span class="hero-link-pill">GitHub</span><span class="hero-link-pill">Resume</span><span class="hero-link-pill">Contact</span>
               </div>
             </div>
-            <p class="hero-card-bio">Building full-stack apps and exploring systems programming. Seeking Summer 2026 SWE internships in the Bay Area.</p>
-            <div class="hero-card-links">
-              <span class="hero-link-pill">LinkedIn</span>
-              <span class="hero-link-pill">GitHub</span>
-              <span class="hero-link-pill">Resume</span>
-              <span class="hero-link-pill">Contact</span>
-            </div>
-          </div>
-          <!-- Card 2: Theo -->
-          <div class="hero-card" id="card-1">
-            <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
-            <div class="hero-card-header">
-              <div class="hero-avatar">T</div>
-              <div>
-                <div class="hero-card-name">Theo Callum</div>
-                <div class="hero-card-title">Marketing · Boston University · 2025</div>
+            <div class="hero-card" id="card-1">
+              <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
+              <div class="hero-card-header">
+                <div class="hero-avatar"><img src="headshot_theo.jpg" alt="Theo Callum" onerror="this.parentElement.textContent='T'"></div>
+                <div><div class="hero-card-name">Theo Callum</div><div class="hero-card-title">Marketing · Boston University · 2025</div></div>
+              </div>
+              <p class="hero-card-bio">Passionate about brand strategy and consumer behavior. Looking for Summer 2025 marketing internships in New York or Boston.</p>
+              <div class="hero-card-links">
+                <span class="hero-link-pill">LinkedIn</span><span class="hero-link-pill">Portfolio</span><span class="hero-link-pill">Resume</span><span class="hero-link-pill">Contact</span>
               </div>
             </div>
-            <p class="hero-card-bio">Passionate about brand strategy and consumer behavior. Looking for Summer 2025 marketing internships in New York or Boston.</p>
-            <div class="hero-card-links">
-              <span class="hero-link-pill">LinkedIn</span>
-              <span class="hero-link-pill">Portfolio</span>
-              <span class="hero-link-pill">Resume</span>
-              <span class="hero-link-pill">Contact</span>
-            </div>
-          </div>
-          <!-- Card 3: Noa -->
-          <div class="hero-card" id="card-2">
-            <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
-            <div class="hero-card-header">
-              <div class="hero-avatar">N</div>
-              <div>
-                <div class="hero-card-name">Noa Reyes</div>
-                <div class="hero-card-title">Finance · NYU · 2026</div>
+            <div class="hero-card" id="card-2">
+              <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
+              <div class="hero-card-header">
+                <div class="hero-avatar"><img src="headshot_noa.jpg" alt="Noa Reyes" onerror="this.parentElement.textContent='N'"></div>
+                <div><div class="hero-card-name">Noa Reyes</div><div class="hero-card-title">Finance · NYU · 2026</div></div>
               </div>
-            </div>
-            <p class="hero-card-bio">Interested in investment banking and financial modeling. Seeking Summer 2026 finance internships in New York City.</p>
-            <div class="hero-card-links">
-              <span class="hero-link-pill">LinkedIn</span>
-              <span class="hero-link-pill">Resume</span>
-              <span class="hero-link-pill">Projects</span>
-              <span class="hero-link-pill">Contact</span>
+              <p class="hero-card-bio">Interested in investment banking and financial modeling. Seeking Summer 2026 finance internships in New York City.</p>
+              <div class="hero-card-links">
+                <span class="hero-link-pill">LinkedIn</span><span class="hero-link-pill">Resume</span><span class="hero-link-pill">Projects</span><span class="hero-link-pill">Contact</span>
+              </div>
             </div>
           </div>
           <div class="carousel-dots">
@@ -365,13 +333,13 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-inner">
       <div class="about-photo-wrap fade-in">
         <div class="about-photo">
-          <div class="about-photo-placeholder">L</div>
+          <img src="headshot_logan.jpg" alt="Logan Thomas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="about-photo-placeholder" style="display:none">L</div>
         </div>
         <div class="about-tag">UCLA · Mechanical Engineering</div>
       </div>
@@ -393,7 +361,6 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   </div>
 </section>
 
-<!-- PACKAGES -->
 <section id="packages">
   <div class="container">
     <div class="packages-header fade-in">
@@ -425,7 +392,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
             <span class="pkg-style-pill locked">🔒 Bold Accent</span>
           </div>
         </div>
-        <a href="https://instagram.com/ownyourpage.co" target="_blank" class="btn btn-secondary pkg-cta">Get Started</a>
+        <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-secondary pkg-cta">Get Started</a>
       </div>
       <div class="pkg-card featured fade-in">
         <div class="pkg-badge">Most Popular</div>
@@ -447,7 +414,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
             <span class="pkg-style-pill locked">🔒 Bold Accent</span>
           </div>
         </div>
-        <a href="https://instagram.com/ownyourpage.co" target="_blank" class="btn btn-primary pkg-cta">Get Started</a>
+        <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-primary pkg-cta">Get Started</a>
       </div>
       <div class="pkg-card fade-in">
         <div class="pkg-name">Stand Out</div>
@@ -470,13 +437,12 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
             <span class="pkg-style-pill">Bold Accent</span>
           </div>
         </div>
-        <a href="https://instagram.com/ownyourpage.co" target="_blank" class="btn btn-secondary pkg-cta">Get Started</a>
+        <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-secondary pkg-cta">Get Started</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STYLE PREVIEW -->
 <section id="preview">
   <div class="container">
     <div class="preview-header fade-in">
@@ -487,43 +453,28 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
     <div class="preview-grid">
       <div class="preview-card active" id="prev-a" onclick="setStyle('a','Dark Minimal',null)">
         <div class="preview-screen preview-screen-a preview-a">
-          <div class="preview-mini-nav"></div>
-          <div class="preview-mini-title"></div>
-          <div class="preview-mini-sub"></div>
-          <div class="preview-mini-sub2"></div>
+          <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
+          <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
           <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
         </div>
-        <div class="preview-footer">
-          <div class="preview-name">Dark Minimal</div>
-          <div class="preview-desc">Sharp, modern, technical — all packages</div>
-        </div>
+        <div class="preview-footer"><div class="preview-name">Dark Minimal</div><div class="preview-desc">Sharp, modern, technical — all packages</div></div>
       </div>
       <div class="preview-card locked" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
         <div class="preview-screen preview-screen-c preview-c">
-          <div class="preview-mini-nav"></div>
-          <div class="preview-mini-title"></div>
-          <div class="preview-mini-sub"></div>
-          <div class="preview-mini-sub2"></div>
+          <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
+          <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
           <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
         </div>
-        <div class="preview-footer">
-          <div class="preview-name">Warm Cream</div>
-          <div class="preview-desc">Soft, approachable — Internship Ready+</div>
-        </div>
+        <div class="preview-footer"><div class="preview-name">Warm Cream</div><div class="preview-desc">Soft, approachable — Internship Ready+</div></div>
         <div class="preview-lock">🔒 Internship Ready+</div>
       </div>
       <div class="preview-card locked" id="prev-e" onclick="setStyle('e','Bold Accent',null)">
         <div class="preview-screen preview-screen-e preview-e">
-          <div class="preview-mini-nav"></div>
-          <div class="preview-mini-title"></div>
-          <div class="preview-mini-sub"></div>
-          <div class="preview-mini-sub2"></div>
+          <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
+          <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
           <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
         </div>
-        <div class="preview-footer">
-          <div class="preview-name">Bold Accent</div>
-          <div class="preview-desc">Editorial, striking — Stand Out only</div>
-        </div>
+        <div class="preview-footer"><div class="preview-name">Bold Accent</div><div class="preview-desc">Editorial, striking — Stand Out only</div></div>
         <div class="preview-lock">🔒 Stand Out</div>
       </div>
     </div>
@@ -534,7 +485,6 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="container">
     <div class="packages-header fade-in">
@@ -542,72 +492,58 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <h2 class="section-title">How it works</h2>
     </div>
     <div class="steps">
-      <div class="step fade-in">
-        <div class="step-num">1</div>
-        <div class="step-title">Pick your package</div>
-        <div class="step-desc">Choose the tier that fits where you are in your job search and what you want to show off.</div>
-      </div>
-      <div class="step fade-in">
-        <div class="step-num">2</div>
-        <div class="step-title">We connect</div>
-        <div class="step-desc">DM me on Instagram. I'll ask a few quick questions about your content, colors, and style preference.</div>
-      </div>
-      <div class="step fade-in">
-        <div class="step-num">3</div>
-        <div class="step-title">I build it</div>
-        <div class="step-desc">I handle everything. You'll get a preview link to review before anything is finalized.</div>
-      </div>
-      <div class="step fade-in">
-        <div class="step-num">4</div>
-        <div class="step-title">You own it forever</div>
-        <div class="step-desc">Once you approve, I transfer everything to your GitHub account. Your site, your code, your call.</div>
-      </div>
+      <div class="step fade-in"><div class="step-num">1</div><div class="step-title">Pick your package</div><div class="step-desc">Choose the tier that fits where you are in your job search and what you want to show off.</div></div>
+      <div class="step fade-in"><div class="step-num">2</div><div class="step-title">We connect</div><div class="step-desc">DM me on Instagram. I'll ask a few quick questions about your content, colors, and style preference.</div></div>
+      <div class="step fade-in"><div class="step-num">3</div><div class="step-title">I build it</div><div class="step-desc">I handle everything. You'll get a preview link to review before anything is finalized.</div></div>
+      <div class="step fade-in"><div class="step-num">4</div><div class="step-title">You own it forever</div><div class="step-desc">Once you approve, I transfer everything to your GitHub account. Your site, your code, your call.</div></div>
     </div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="container">
     <div class="packages-header fade-in">
       <span class="section-label">Portfolio</span>
       <h2 class="section-title">Example sites</h2>
-      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.9rem;">Every site is personalized to you — your content, your color, your style. These are starting points, not copies.</p>
+      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.9rem;">Every site is personalized to you — your content, your color, your style. Click any example to see a live demo.</p>
     </div>
     <div class="portfolio-grid">
-      <a href="template-starter.html" target="_blank" class="portfolio-card fade-in">
+      <a href="template-starter.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-starter.html')">
         <div class="portfolio-thumb portfolio-thumb-a">
-          <div style="text-align:center;padding:1rem">
+          <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#f0f0f0;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
             <div style="color:#8892a4;font-size:0.75rem">CS · UC Berkeley · 2026</div>
           </div>
         </div>
+        <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Dark Minimal</div>
           <div class="portfolio-title">Computer Science Student — Starter</div>
           <div class="portfolio-pkg">Single page · Bio, links, resume</div>
         </div>
       </a>
-      <a href="template-internship-ready.html" target="_blank" class="portfolio-card fade-in">
+      <a href="template-internship-ready.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-internship-ready.html')">
         <div class="portfolio-thumb portfolio-thumb-c">
-          <div style="text-align:center;padding:1rem">
+          <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#2C2418;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Theo Callum</div>
             <div style="color:#7A6E5F;font-size:0.75rem">Marketing · Boston University · 2025</div>
           </div>
         </div>
+        <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Warm Cream</div>
           <div class="portfolio-title">Marketing Student — Internship Ready</div>
-          <div class="portfolio-pkg">Skills, projects, 5 images</div>
+          <div class="portfolio-pkg">Skills, projects, 4 images</div>
         </div>
       </a>
-      <a href="template-stand-out.html" target="_blank" class="portfolio-card fade-in">
+      <a href="template-stand-out.html" target="_blank" rel="noopener noreferrer" class="portfolio-card fade-in" onclick="return openExample('template-stand-out.html')">
         <div class="portfolio-thumb portfolio-thumb-e">
-          <div style="text-align:center;padding:1rem;position:relative;z-index:1">
+          <div style="text-align:center;padding:1rem;z-index:1;position:relative">
             <div style="color:#111;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Noa Reyes</div>
             <div style="color:#555;font-size:0.75rem">Finance · NYU · 2026</div>
           </div>
         </div>
+        <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Bold Accent</div>
           <div class="portfolio-title">Finance Student — Stand Out</div>
@@ -618,47 +554,21 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <div class="container">
-    <div class="packages-header fade-in">
-      <span class="section-label">FAQ</span>
-      <h2 class="section-title">Common questions</h2>
-    </div>
+    <div class="packages-header fade-in"><span class="section-label">FAQ</span><h2 class="section-title">Common questions</h2></div>
     <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do I pay monthly?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Never. Your site is hosted free on GitHub Pages — no subscriptions, no platform fees, nothing recurring. If you ever want a custom domain like yourname.com that's completely optional, about $12 a year paid directly to a domain registrar — nothing to do with me. I don't touch it, I don't manage it, I don't collect it.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What will my website address be?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Your site will live at a free GitHub Pages URL — something like yourname.github.io. It's a real link you can put on your resume, LinkedIn, and anywhere else. Clean, shareable, and professional. If you ever want a custom address like yourname.com you can grab one anytime through any domain registrar for about $12 a year — completely optional and nothing to do with me.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How long does it take?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Starter sites are typically delivered in 5–7 days. Internship Ready in 7–10 days. Stand Out in 10–14 days.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Can I update it myself?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Yes — you own the code on GitHub and can edit it anytime. If you'd rather have me make changes I offer updates at a flat rate per change.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What do I need to get started?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Just a free GitHub account. That's it. I'll walk you through anything you need.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What if I want changes after delivery?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">Each package includes a set number of revision rounds during the build. Changes after delivery are available — just DM me and we'll figure out a fair rate for what you need.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Is this just a template or is it custom?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a">It starts from a clean base but every site is personalized to you — your colors, your content, your style. No two sites look identical.</div>
-      </div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I pay monthly?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Never. Your site is hosted free on GitHub Pages — no subscriptions, no platform fees, nothing recurring. If you ever want a custom domain like yourname.com that's completely optional, about $12 a year paid directly to a domain registrar — nothing to do with me. I don't touch it, I don't manage it, I don't collect it.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What will my website address be?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Your site will live at a free GitHub Pages URL — something like yourname.github.io. It's a real link you can put on your resume, LinkedIn, and anywhere else. Clean, shareable, and professional. If you ever want a custom address like yourname.com you can grab one anytime through any domain registrar for about $12 a year — completely optional and nothing to do with me.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does it take?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Starter sites are typically delivered in 5–7 days. Internship Ready in 7–10 days. Stand Out in 10–14 days.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I update it myself?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes — you own the code on GitHub and can edit it anytime. If you'd rather have me make changes I offer updates at a flat rate per change.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What do I need to get started?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Just a free GitHub account. That's it. I'll walk you through anything you need.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I want changes after delivery?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Each package includes a set number of revision rounds during the build. Changes after delivery are available — just DM me and we'll figure out a fair rate for what you need.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this just a template or is it custom?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">It starts from a clean base but every site is personalized to you — your colors, your content, your style. No two sites look identical.</div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-inner fade-in">
@@ -666,7 +576,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <h2 class="contact-title">Ready to get started?</h2>
       <p class="contact-sub">DM me on Instagram and we'll have your site live within two weeks. I'm a real person — usually reply within 24 hours.</p>
       <div class="contact-actions">
-        <a href="https://instagram.com/ownyourpage.co" target="_blank" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">DM @ownyourpage.co</a>
+        <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">DM @ownyourpage.co</a>
         <div class="contact-email">Or email <a href="mailto:hello.ownyourpage@gmail.com">hello.ownyourpage@gmail.com</a></div>
         <div class="contact-note">Usually respond within 24 hours · No pressure, no sales pitch</div>
       </div>
@@ -679,7 +589,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
     <div class="footer-logo">Own Your Page</div>
     <div class="footer-copy">© 2026 Own Your Page · Built by a UCLA student, for students · Your site. Your code. Yours forever.</div>
     <div class="footer-links">
-      <a href="https://instagram.com/ownyourpage.co" target="_blank">Instagram</a>
+      <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="mailto:hello.ownyourpage@gmail.com">Email</a>
     </div>
   </div>
@@ -687,17 +597,12 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 
 <script>
 const colors=[
-  {name:'Violet',hex:'#7C3AED'},
-  {name:'Midnight',hex:'#1E40AF'},
-  {name:'Sage',hex:'#16A34A'},
-  {name:'Ember',hex:'#EA580C'},
-  {name:'Sky',hex:'#0284C7'},
-  {name:'Rose',hex:'#DB2777'},
-  {name:'Slate',hex:'#475569'},
-  {name:'Noir',hex:'#1a1a1a'},
+  {name:'Violet',hex:'#7C3AED'},{name:'Midnight',hex:'#1E40AF'},
+  {name:'Sage',hex:'#16A34A'},{name:'Ember',hex:'#EA580C'},
+  {name:'Sky',hex:'#0284C7'},{name:'Rose',hex:'#DB2777'},
+  {name:'Slate',hex:'#475569'},{name:'Noir',hex:'#1a1a1a'},
 ];
 let activeColor='#7C3AED';
-let activeStyle='a';
 
 function buildSwatches(){
   const el=document.getElementById('navSwatches');
@@ -705,8 +610,7 @@ function buildSwatches(){
   colors.forEach(c=>{
     const s=document.createElement('div');
     s.className='swatch'+(c.hex===activeColor?' active':'');
-    s.style.background=c.hex;
-    s.title=c.name;
+    s.style.background=c.hex;s.title=c.name;
     s.onclick=()=>setColor(c.hex);
     el.appendChild(s);
   });
@@ -731,12 +635,10 @@ function setColor(hex){
   document.querySelectorAll('.preview-mini-btn').forEach(b=>b.style.background=hex);
 }
 function setStyle(style,label,optionEl){
-  activeStyle=style;
   document.body.className='style-'+style;
   document.getElementById('styleBtnLabel').textContent=label;
   document.querySelectorAll('.style-option').forEach(o=>o.classList.remove('active'));
   if(optionEl)optionEl.classList.add('active');
-  else document.querySelectorAll('.style-option').forEach(o=>{if(o.textContent.trim().startsWith(label))o.classList.add('active');});
   ['a','c','e'].forEach(s=>{
     const card=document.getElementById('prev-'+s);
     if(card)card.classList.toggle('active',s===style);
@@ -754,23 +656,63 @@ function closeDropdown(){
 document.addEventListener('click',e=>{if(!e.target.closest('.style-selector'))closeDropdown();});
 function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
 
-// CAROUSEL
+/* Open example in new tab — closes that tab when user navigates back */
+function openExample(url){
+  const w=window.open(url,'_blank','noopener,noreferrer');
+  return false;
+}
+
+/* CAROUSEL — smooth fade, no blur */
 let currentCard=0;
 const totalCards=3;
 let carouselTimer;
+let isTransitioning=false;
+
 function goToCard(index){
-  document.getElementById('card-'+currentCard).classList.remove('active');
-  document.querySelectorAll('.carousel-dot')[currentCard].classList.remove('active');
-  currentCard=index;
-  document.getElementById('card-'+currentCard).classList.add('active');
-  document.querySelectorAll('.carousel-dot')[currentCard].classList.add('active');
+  if(isTransitioning||index===currentCard)return;
+  isTransitioning=true;
+  const prev=document.getElementById('card-'+currentCard);
+  const next=document.getElementById('card-'+index);
+  const dots=document.querySelectorAll('.carousel-dot');
+  dots[currentCard].classList.remove('active');
+  dots[index].classList.add('active');
+  /* fade out current */
+  prev.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  prev.style.opacity='0';
+  prev.style.transform='translateY(-6px)';
+  setTimeout(()=>{
+    prev.classList.remove('active');
+    prev.style.position='absolute';
+    prev.style.opacity='';
+    prev.style.transform='';
+    /* fade in next */
+    next.style.opacity='0';
+    next.style.transform='translateY(6px)';
+    next.style.transition='none';
+    next.classList.add('active');
+    next.style.position='relative';
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        next.style.transition='opacity 0.5s ease, transform 0.5s ease';
+        next.style.opacity='1';
+        next.style.transform='translateY(0)';
+        setTimeout(()=>{
+          next.style.transition='';
+          next.style.opacity='';
+          next.style.transform='';
+          currentCard=index;
+          isTransitioning=false;
+        },520);
+      });
+    });
+  },520);
   resetTimer();
 }
 function nextCard(){goToCard((currentCard+1)%totalCards);}
-function resetTimer(){clearInterval(carouselTimer);carouselTimer=setInterval(nextCard,3000);}
-carouselTimer=setInterval(nextCard,3000);
+function resetTimer(){clearInterval(carouselTimer);carouselTimer=setInterval(nextCard,3500);}
+carouselTimer=setInterval(nextCard,3500);
 
-// SCROLL FADE
+/* SCROLL FADE */
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
