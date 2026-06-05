@@ -114,8 +114,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="hero-photo">
-        <!-- Replace with: <img src="headshot_zara.jpg" alt="Zara Voss"> -->
-        <div class="photo-placeholder">Z</div>
+        
+        <img src="headshot_zara.jpg" alt="Zara Voss" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="photo-placeholder" style="display:none">Z</div>
       </div>
     </div>
   </div>
@@ -161,7 +161,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Zara Voss</div>
-    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank">Built by Own Your Page ↗</a></div>
+    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank" rel="noopener noreferrer">Built by Own Your Page ↗</a></div>
   </div>
 </footer>
 
