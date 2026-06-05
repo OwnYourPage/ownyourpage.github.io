@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noa Reyes — Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#7C3AED;
+  --accent2:color-mix(in srgb,var(--accent) 15%,transparent);
+  --bg:#FAFAFA;--bg2:#F0EEF8;--text:#111111;--muted:#555555;--border:#D0C8E8;--card:#FFFFFF;
+  --radius:12px;--radius-sm:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+/* NAV — bold accent bar */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,0.96);backdrop-filter:blur(12px);border-bottom:3px solid var(--accent);}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
+.nav-name{font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--text);text-decoration:none;letter-spacing:-0.01em;}
+.nav-links{display:flex;gap:0.25rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;transition:all 0.15s;padding:0.3rem 0.75rem;border-radius:4px;}
+.nav-links a:hover{background:var(--bg2);color:var(--accent);}
+.nav-cta{background:var(--accent);color:#fff !important;border-radius:4px;padding:0.3rem 0.9rem !important;}
+.nav-cta:hover{background:color-mix(in srgb,var(--accent) 85%,black) !important;color:#fff !important;}
+
+.container{max-width:1000px;margin:0 auto;padding:0 2rem;}
+
+/* HERO — editorial split layout */
+#hero{min-height:100vh;display:grid;grid-template-columns:5px 1fr;padding-top:63px;}
+.hero-stripe{background:var(--accent);}
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;}
+.hero-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.hero-name{font-family:'Instrument Serif',serif;font-size:clamp(3rem,7vw,6rem);line-height:0.95;color:var(--text);margin-bottom:0.5rem;letter-spacing:-0.02em;}
+.hero-name em{font-style:italic;color:var(--accent);}
+.hero-role{font-size:1rem;font-weight:500;color:var(--muted);margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:2.5rem;}
+.hero-bio{font-size:1rem;color:var(--muted);line-height:1.85;}
+.hero-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;}
+.photo-placeholder{font-family:'Instrument Serif',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;}
+.meta-item{padding:1rem;background:var(--bg2);border-radius:var(--radius-sm);border-left:3px solid var(--accent);}
+.meta-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;}
+.meta-value{font-size:0.88rem;font-weight:500;color:var(--text);}
+.hero-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.25rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;text-decoration:none;border:2px solid transparent;transition:all 0.18s;font-family:'Instrument Sans',sans-serif;letter-spacing:0.01em;}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-primary:hover{background:color-mix(in srgb,var(--accent) 85%,black);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+/* SECTION SHARED */
+section{padding:5rem 0;}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:2.5rem;}
+.section-num{font-family:'Instrument Serif',serif;font-size:3rem;color:var(--border);line-height:1;flex-shrink:0;}
+.section-label-wrap{}
+.section-label{font-size:0.65rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.2rem;}
+.section-title{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);line-height:1.15;}
+
+/* SKILLS */
+#skills{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.skill-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem;border-top:3px solid var(--accent);transition:transform 0.18s;}
+.skill-block:hover{transform:translateY(-2px);}
+.skill-category{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.skill-tags{display:flex;flex-direction:column;gap:0.35rem;}
+.skill-tag{font-size:0.82rem;color:var(--muted);}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.2s;}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,0.08);}
+.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;}
+.project-img img{width:100%;height:100%;object-fit:cover;}
+.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;width:100%;height:100%;border:2px dashed var(--border);}
+.img-placeholder-icon{font-size:1.5rem;opacity:0.3;}
+.img-placeholder-text{font-size:0.75rem;color:var(--muted);opacity:0.6;}
+.project-info{padding:1.25rem;}
+.project-name{font-family:'Instrument Serif',serif;font-size:1.05rem;color:var(--text);margin-bottom:0.35rem;}
+.project-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;}
+.project-tags{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.tag{font-size:0.68rem;padding:0.18rem 0.55rem;border-radius:3px;background:var(--bg2);color:var(--accent);border:1px solid var(--border);font-weight:500;}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-text{font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:2rem;}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem;}
+.contact-link-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:500;transition:all 0.18s;border-left:3px solid var(--accent);}
+.contact-link-item:hover{background:var(--bg2);transform:translateX(3px);}
+.contact-link-label{font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:0.1rem;}
+.contact-info-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;}
+.info-row{display:flex;flex-direction:column;padding:0.85rem 0;border-bottom:1px solid var(--border);}
+.info-row:last-child{border-bottom:none;}
+.info-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.2rem;}
+.info-value{font-size:0.9rem;color:var(--text);font-weight:500;}
+
+/* HOVER ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.hover-lift{transition:transform 0.2s;}
+.hover-lift:hover{transform:translateY(-3px);}
+
+footer{border-top:3px solid var(--accent);padding:1.5rem 2rem;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.75rem;color:var(--muted);}
+.footer-credit a{font-size:0.75rem;color:var(--accent);text-decoration:none;font-weight:600;}
+
+@media(max-width:768px){
+  #hero{grid-template-columns:4px 1fr;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-meta{grid-template-columns:1fr 1fr;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .contact-layout{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero-content{padding:2rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Noa Reyes</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="credentials.html">Credentials</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Finance · NYU · 2026</div>
+    <h1 class="hero-name">Noa<br><em>Reyes</em></h1>
+    <div class="hero-role">Finance Student · Aspiring Investment Banker · Open to Summer 2026 Internships</div>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-bio">Driven by markets, financial modeling, and the mechanics of capital allocation. I combine rigorous quantitative skills with clear communication to deliver analysis that actually gets used.</p>
+        <br>
+        <p class="hero-bio">Looking for Summer 2026 investment banking or corporate finance internships in New York City.</p>
+        <br>
+        <div class="hero-links">
+          <a href="#" class="btn btn-primary">Download Resume</a>
+          <a href="#" class="btn btn-outline">LinkedIn</a>
+          <a href="#contact" class="btn btn-outline">Contact</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <!-- Replace with: <img src="headshot_noa.jpg" alt="Noa Reyes"> -->
+        <div class="photo-placeholder">N</div>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-label">School</div><div class="meta-value">NYU Stern</div></div>
+      <div class="meta-item"><div class="meta-label">GPA</div><div class="meta-value">3.87 / 4.00</div></div>
+      <div class="meta-item"><div class="meta-label">Graduating</div><div class="meta-value">May 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">01</div>
+      <div class="section-label-wrap">
+        <span class="section-label">Capabilities</span>
+        <h2 class="section-title">Skills & tools</h2>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-block fade-in hover-lift">
+        <div class="skill-category">Finance</div>
+        <div class="skill-tags">
+          <div class="skill-tag">Financial modeling</div>
+          <div class="skill-tag">DCF valuation</div>
+          <div class="skill-tag">Comparable analysis</div>
+          <div class="skill-tag">LBO basics</div>
+        </div>
+      </div>
+      <div class="skill-block fade-in hover-lift">
+        <div class="skill-category">Analysis</div>
+        <div class="skill-tags">
+          <div class="skill-tag">Excel (advanced)</div>
+          <div class="skill-tag">Bloomberg Terminal</div>
+          <div class="skill-tag">FactSet</div>
+          <div class="skill-tag">Python (pandas)</div>
+        </div>
+      </div>
+      <div class="skill-block fade-in hover-lift">
+        <div class="skill-category">Communication</div>
+        <div class="skill-tags">
+          <div class="skill-tag">Pitch decks</div>
+          <div class="skill-tag">Investment memos</div>
+          <div class="skill-tag">Client presentations</div>
+          <div class="skill-tag">Research reports</div>
+        </div>
+      </div>
+      <div class="skill-block fade-in hover-lift">
+        <div class="skill-category">Markets</div>
+        <div class="skill-tags">
+          <div class="skill-tag">Equity markets</div>
+          <div class="skill-tag">Fixed income</div>
+          <div class="skill-tag">M&A fundamentals</div>
+          <div class="skill-tag">Macro analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">02</div>
+      <div class="section-label-wrap">
+        <span class="section-label">Work</span>
+        <h2 class="section-title">Selected projects</h2>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project1_noa.jpg" alt="DCF Model"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">DCF Valuation — Consumer Staples</div>
+          <div class="project-desc">Built a full three-statement DCF model for a S&P 500 consumer staples company, arriving at a price target 12% below market with a short thesis presented to NYU's student investment fund.</div>
+          <div class="project-tags"><span class="tag">DCF</span><span class="tag">Excel</span><span class="tag">Equity Research</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project2_noa.jpg" alt="M&A Case Study"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">M&A Case Study Competition</div>
+          <div class="project-desc">Led a team of 3 in a university M&A case competition, advising a hypothetical acquirer on a $2.4B strategic acquisition. Placed 2nd out of 18 teams with a full pitch deck and model.</div>
+          <div class="project-tags"><span class="tag">M&A</span><span class="tag">Valuation</span><span class="tag">Pitch Deck</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project3_noa.jpg" alt="Portfolio Analysis"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Student Portfolio — Equity Analysis</div>
+          <div class="project-desc">Manage a $10,000 paper portfolio through NYU's investment program. Current YTD return of +14.3% vs S&P benchmark of +9.1%, with monthly written thesis updates for each position.</div>
+          <div class="project-tags"><span class="tag">Portfolio Management</span><span class="tag">Bloomberg</span><span class="tag">Research</span></div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <!-- Replace with: <img src="project4_noa.jpg" alt="Fixed Income Research"> -->
+          <div class="img-placeholder">
+            <div class="img-placeholder-icon">🖼</div>
+            <div class="img-placeholder-text">Project image goes here</div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">Fixed Income Rate Sensitivity Report</div>
+          <div class="project-desc">Produced a 15-page research report analyzing duration risk across three bond portfolios under three rate scenarios, presented as a final project for Fixed Income Securities course.</div>
+          <div class="project-tags"><span class="tag">Fixed Income</span><span class="tag">Rate Analysis</span><span class="tag">Excel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">03</div>
+      <div class="section-label-wrap">
+        <span class="section-label">Get in touch</span>
+        <h2 class="section-title">Let's connect</h2>
+      </div>
+    </div>
+    <div class="contact-layout">
+      <div class="fade-in">
+        <p class="contact-text">I'm actively recruiting for Summer 2026 investment banking and corporate finance internships in New York City. If you're a recruiter, a finance professional, or just want to connect — I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:noa@example.com" class="contact-link-item">
+            <div><span class="contact-link-label">Email</span>noa@example.com</div>
+          </a>
+          <a href="#" class="contact-link-item">
+            <div><span class="contact-link-label">LinkedIn</span>linkedin.com/in/noareyes</div>
+          </a>
+          <a href="#" class="contact-link-item">
+            <div><span class="contact-link-label">Resume</span>Download PDF</div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-info-block fade-in">
+        <div class="info-row"><div class="info-label">School</div><div class="info-value">NYU Stern School of Business</div></div>
+        <div class="info-row"><div class="info-label">Major</div><div class="info-value">Finance</div></div>
+        <div class="info-row"><div class="info-label">Graduation</div><div class="info-value">May 2026</div></div>
+        <div class="info-row"><div class="info-label">Location</div><div class="info-value">New York City, NY</div></div>
+        <div class="info-row"><div class="info-label">Looking for</div><div class="info-value">Summer 2026 IB / Corporate Finance</div></div>
+        <div class="info-row"><div class="info-label">Credentials</div><div class="info-value"><a href="credentials.html" style="color:var(--accent);text-decoration:none;font-weight:600;">View certifications & awards →</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Noa Reyes</div>
+    <div class="footer-credit"><a href="https://ownyourpage.github.io" target="_blank">Built by Own Your Page ↗</a></div>
+  </div>
+</footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
