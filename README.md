@@ -2,9 +2,7 @@
 
 Personal bio websites for college students — built clean, transferred to you, yours forever.
 
-Website: [ownyourpage.github.io](https://ownyourpage.github.io)
-Instagram: [@ownyourpage.co](https://instagram.com/ownyourpage.co)
-Mail: hello.ownyourpage@gmail.com
+[ownyourpage.github.io](https://ownyourpage.github.io) · [@ownyourpage.co](https://instagram.com/ownyourpage.co) · hello.ownyourpage@gmail.com
 
 ---
 
