@@ -102,7 +102,7 @@ section{padding:6rem 0;}
 .about-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center;}
 .about-photo-wrap{position:relative;}
 .about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background var(--transition);}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;}
 .about-photo-placeholder{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--accent);opacity:0.3;}
 .about-tag{position:absolute;bottom:1rem;left:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.5rem 0.85rem;font-size:0.78rem;font-weight:500;color:var(--text);transition:background var(--transition);}
 .section-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
@@ -267,9 +267,9 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   .hero-inner{grid-template-columns:1fr;gap:2rem;}
   .hero-visual{display:flex !important;}
   .hero-carousel{max-width:100%;}
-  .carousel-track{min-height:220px;}
+  .carousel-track{min-height:240px;}
   .about-inner{grid-template-columns:1fr;gap:2rem;}
-  .about-photo{aspect-ratio:4/3;}
+  .about-photo{aspect-ratio:3/4;max-height:340px;}
   .packages-grid{grid-template-columns:1fr;}
   .preview-grid{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr 1fr;gap:1.5rem;}
