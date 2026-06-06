@@ -304,11 +304,9 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 /* ── ONBOARDING ANIMATION ── */
 .hint-pulse{animation:hintPulse 1s ease-in-out 3;}
 @keyframes hintPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 40%,transparent);}50%{transform:scale(1.18);box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 0%,transparent);}}
-.hint-arrow{position:fixed;z-index:500;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity 0.4s;}
-.hint-arrow.visible{opacity:1;}
-.hint-arrow-label{background:var(--text);color:var(--bg);font-size:0.72rem;font-weight:600;padding:5px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;}
-.hint-arrow-line{width:2px;height:20px;background:var(--text);border-radius:2px;}
-.hint-arrow-tip{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:7px solid var(--text);}
+.hint-bubble{position:fixed;z-index:500;pointer-events:none;opacity:0;transition:opacity 0.35s ease;transform:translateX(-50%);}
+.hint-bubble.visible{opacity:1;}
+.hint-bubble-label{background:#1a1a1a;color:#ffffff;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:20px;white-space:nowrap;font-family:'Inter',sans-serif;letter-spacing:0.03em;box-shadow:0 4px 16px rgba(0,0,0,0.25);}
 </style>
 </head>
 <body class="style-b">
@@ -826,11 +824,11 @@ document.addEventListener('click',e=>{
     const swatches = document.getElementById('navSwatches');
     if(!styleBtn || !swatches) return;
 
-    // Phase 1: highlight style toggle with label
+    // Phase 1: highlight style toggle with label — centered below button
     const hintStyle = document.getElementById('hintStyle');
     const btnRect = styleBtn.getBoundingClientRect();
     hintStyle.style.top = (btnRect.bottom + 10) + 'px';
-    hintStyle.style.left = (btnRect.left + btnRect.width/2 - 70) + 'px';
+    hintStyle.style.left = (btnRect.left + btnRect.width/2) + 'px';
     hintStyle.classList.add('visible');
     styleBtn.style.transition = 'box-shadow 0.3s, transform 0.3s';
     styleBtn.style.boxShadow = '0 0 0 3px var(--accent), 0 0 16px color-mix(in srgb,var(--accent) 40%,transparent)';
@@ -845,7 +843,7 @@ document.addEventListener('click',e=>{
       const hintColor = document.getElementById('hintColor');
       const swRect = swatches.getBoundingClientRect();
       hintColor.style.top = (swRect.bottom + 10) + 'px';
-      hintColor.style.left = (swRect.left + swRect.width/2 - 60) + 'px';
+      hintColor.style.left = (swRect.left + swRect.width/2) + 'px';
       hintColor.classList.add('visible');
 
       // Ripple through swatches
@@ -870,15 +868,7 @@ document.addEventListener('click',e=>{
 </script>
 
 <!-- Onboarding hint arrows -->
-<div class="hint-arrow" id="hintStyle">
-  <div class="hint-arrow-tip"></div>
-  <div class="hint-arrow-line"></div>
-  <div class="hint-arrow-label">Try a style</div>
-</div>
-<div class="hint-arrow" id="hintColor">
-  <div class="hint-arrow-tip"></div>
-  <div class="hint-arrow-line"></div>
-  <div class="hint-arrow-label">Pick a color</div>
-</div>
+<div class="hint-bubble" id="hintStyle"><div class="hint-bubble-label">Try a style</div></div>
+<div class="hint-bubble" id="hintColor"><div class="hint-bubble-label">Pick a color</div></div>
 </body>
 </html>
