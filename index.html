@@ -307,11 +307,11 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .hint-arrow{position:fixed;z-index:500;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity 0.4s;}
 .hint-arrow.visible{opacity:1;}
 .hint-arrow-label{background:var(--text);color:var(--bg);font-size:0.72rem;font-weight:600;padding:5px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;}
-.hint-arrow-line{width:2px;height:24px;background:var(--text);border-radius:2px;}
-.hint-arrow-tip{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--text);}
+.hint-arrow-line{width:2px;height:20px;background:var(--text);border-radius:2px;}
+.hint-arrow-tip{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:7px solid var(--text);}
 </style>
 </head>
-<body class="style-c">
+<body class="style-b">
 
 <nav>
   <div class="nav-inner">
@@ -329,7 +329,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <div class="color-swatches" id="navSwatches"></div>
       <div class="style-selector">
         <button class="style-btn" id="styleBtn" onclick="toggleDropdown()">
-          <span id="styleBtnLabel">Warm Cream</span>
+          <span id="styleBtnLabel">Clean White</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="style-dropdown" id="styleDropdown">
@@ -546,16 +546,15 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.88rem;">Switch styles using the dropdown above, or click a card below. Pick any accent color — it works across all styles.</p>
     </div>
     <div class="preview-grid" style="grid-template-columns:repeat(4,1fr)">
-      <div class="preview-card locked" id="prev-b" onclick="setStyle('b','Clean White',null)">
+      <div class="preview-card active" id="prev-b" onclick="setStyle('b','Clean White',null)">
         <div class="preview-screen preview-screen-b preview-b" style="background:#FFFFFF;border-bottom:3px solid #111;">
           <div class="preview-mini-nav" style="background:#111;opacity:0.7"></div><div class="preview-mini-title" style="background:#111"></div>
           <div class="preview-mini-sub" style="background:#888"></div><div class="preview-mini-sub2" style="background:#888"></div>
           <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
-        <div class="preview-footer"><div class="preview-name">Clean White</div><div class="preview-desc">Crisp, universal — Starter</div></div>
-        <div class="preview-lock">🔒 Starter</div>
+        <div class="preview-footer"><div class="preview-name">Clean White</div><div class="preview-desc">Crisp, universal — all packages</div></div>
       </div>
-      <div class="preview-card active" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
+      <div class="preview-card locked" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
         <div class="preview-screen preview-screen-c preview-c">
           <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
           <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
@@ -614,15 +613,15 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
     </div>
     <div class="portfolio-grid">
       <a href="template-starter.html" class="portfolio-card fade-in" onclick="return openExample('template-starter.html')">
-        <div class="portfolio-thumb portfolio-thumb-a">
+        <div class="portfolio-thumb" style="background:#FFFFFF;border-bottom:3px solid #111111;">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
-            <div style="color:#f0f0f0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
-            <div style="color:#8892a4;font-size:0.75rem">CS · UC Berkeley · 2026</div>
+            <div style="color:#111111;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
+            <div style="color:#666666;font-size:0.75rem">CS · UC Berkeley · 2026</div>
           </div>
         </div>
         <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
-          <div class="portfolio-style">Dark Minimal</div>
+          <div class="portfolio-style">Clean White</div>
           <div class="portfolio-title">Computer Science — Starter</div>
           <div class="portfolio-pkg">Clean White · Single page · Bio, links, contact</div>
         </div>
@@ -747,8 +746,10 @@ function setStyle(style,label,optionEl){
   if(optionEl)optionEl.classList.add('active');
   ['a','b','c','e'].forEach(s=>{
     const card=document.getElementById('prev-'+s);
-    if(card)card.classList.toggle('active',s===style);
+    if(card){card.classList.toggle('active',s===style);card.classList.toggle('locked',s!==style&&s!=='b');}
   });
+  // Clean White never locked
+  const pb=document.getElementById('prev-b');if(pb)pb.classList.remove('locked');
   closeDropdown();
 }
 function toggleDropdown(){
@@ -818,54 +819,66 @@ document.addEventListener('click',e=>{
   }
 });
 
-// ── ONBOARDING ANIMATION ──
+// ── ONBOARDING ANIMATION — runs every page load ──
 (function(){
-  const seen = sessionStorage.getItem('oyp_hint_seen');
-  if(seen) return;
-  sessionStorage.setItem('oyp_hint_seen','1');
-
-  // Wait for page to settle then animate
   setTimeout(()=>{
     const styleBtn = document.getElementById('styleBtn');
     const swatches = document.getElementById('navSwatches');
     if(!styleBtn || !swatches) return;
 
-    // Pulse the style button
-    styleBtn.classList.add('hint-pulse');
-    styleBtn.addEventListener('animationend', ()=>styleBtn.classList.remove('hint-pulse'), {once:true});
-
-    // Show floating label above style button
+    // Phase 1: highlight style toggle with label
     const hintStyle = document.getElementById('hintStyle');
     const btnRect = styleBtn.getBoundingClientRect();
-    hintStyle.style.top = (btnRect.top - 60) + 'px';
-    hintStyle.style.left = (btnRect.left + btnRect.width/2 - 60) + 'px';
+    hintStyle.style.top = (btnRect.bottom + 10) + 'px';
+    hintStyle.style.left = (btnRect.left + btnRect.width/2 - 70) + 'px';
     hintStyle.classList.add('visible');
+    styleBtn.style.transition = 'box-shadow 0.3s, transform 0.3s';
+    styleBtn.style.boxShadow = '0 0 0 3px var(--accent), 0 0 16px color-mix(in srgb,var(--accent) 40%,transparent)';
+    styleBtn.style.transform = 'scale(1.08)';
 
-    // After 1.8s pulse swatches and show color hint
     setTimeout(()=>{
+      styleBtn.style.boxShadow = '';
+      styleBtn.style.transform = '';
       hintStyle.classList.remove('visible');
-      const allSwatches = swatches.querySelectorAll('.swatch');
-      allSwatches.forEach((s,i)=>{
-        setTimeout(()=>{ s.classList.add('hint-pulse'); s.addEventListener('animationend',()=>s.classList.remove('hint-pulse'),{once:true}); }, i*80);
-      });
+
+      // Phase 2: highlight color swatches
       const hintColor = document.getElementById('hintColor');
       const swRect = swatches.getBoundingClientRect();
-      hintColor.style.top = (swRect.top - 60) + 'px';
-      hintColor.style.left = (swRect.left + swRect.width/2 - 55) + 'px';
+      hintColor.style.top = (swRect.bottom + 10) + 'px';
+      hintColor.style.left = (swRect.left + swRect.width/2 - 60) + 'px';
       hintColor.classList.add('visible');
-      setTimeout(()=>hintColor.classList.remove('visible'), 2200);
-    }, 2000);
-  }, 1200);
+
+      // Ripple through swatches
+      const allSwatches = swatches.querySelectorAll('.swatch');
+      allSwatches.forEach((s,i)=>{
+        setTimeout(()=>{
+          s.style.transition = 'transform 0.2s, box-shadow 0.2s';
+          s.style.transform = 'scale(1.35)';
+          s.style.boxShadow = '0 0 0 3px var(--text), 0 4px 12px rgba(0,0,0,0.2)';
+          setTimeout(()=>{
+            s.style.transform = '';
+            s.style.boxShadow = '';
+          }, 300);
+        }, i * 100);
+      });
+
+      setTimeout(()=>hintColor.classList.remove('visible'), allSwatches.length * 100 + 800);
+    }, 2200);
+  }, 1000);
 })();
 
 </script>
 
 <!-- Onboarding hint arrows -->
 <div class="hint-arrow" id="hintStyle">
-  <div class="hint-arrow-label">Try a style ↑</div>
+  <div class="hint-arrow-tip"></div>
+  <div class="hint-arrow-line"></div>
+  <div class="hint-arrow-label">Try a style</div>
 </div>
 <div class="hint-arrow" id="hintColor">
-  <div class="hint-arrow-label">Pick a color ↑</div>
+  <div class="hint-arrow-tip"></div>
+  <div class="hint-arrow-line"></div>
+  <div class="hint-arrow-label">Pick a color</div>
 </div>
 </body>
 </html>
