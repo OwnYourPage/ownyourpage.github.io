@@ -12,6 +12,7 @@
   --accent: #DB2777;
   --accent-dark: #be185d;
   --a-bg:#0a0f1a;--a-bg2:#131929;--a-text:#f0f0f0;--a-muted:#8892a4;--a-border:#1e2a3a;--a-card:#131929;--a-nav:rgba(10,15,26,0.92);
+  --b-bg:#FFFFFF;--b-bg2:#F8F8F8;--b-text:#111111;--b-muted:#666666;--b-border:#E5E5E5;--b-card:#FFFFFF;--b-nav:rgba(255,255,255,0.97);
   --c-bg:#F7F3ED;--c-bg2:#EDE8E0;--c-text:#2C2418;--c-muted:#7A6E5F;--c-border:#D8D0C4;--c-card:#FFFFFF;--c-nav:rgba(247,243,237,0.95);
   --e-bg:#FAFAFA;--e-bg2:#F0EEF8;--e-text:#111111;--e-muted:#555555;--e-border:#D0C8E8;--e-card:#FFFFFF;--e-nav:rgba(250,250,250,0.95);
   --bg:var(--c-bg);--bg2:var(--c-bg2);--text:var(--c-text);--muted:var(--c-muted);--border:var(--c-border);--card:var(--c-card);--nav-bg:var(--c-nav);
@@ -21,8 +22,14 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.7;overflow-x:hidden;}
 body.style-a{--bg:var(--a-bg);--bg2:var(--a-bg2);--text:var(--a-text);--muted:var(--a-muted);--border:var(--a-border);--card:var(--a-card);--nav-bg:var(--a-nav);}
+body.style-b{--bg:var(--b-bg);--bg2:var(--b-bg2);--text:var(--b-text);--muted:var(--b-muted);--border:var(--b-border);--card:var(--b-card);--nav-bg:var(--b-nav);}
 body.style-c{--bg:var(--c-bg);--bg2:var(--c-bg2);--text:var(--c-text);--muted:var(--c-muted);--border:var(--c-border);--card:var(--c-card);--nav-bg:var(--c-nav);}
 body.style-e{--bg:var(--e-bg);--bg2:var(--e-bg2);--text:var(--e-text);--muted:var(--e-muted);--border:var(--e-border);--card:var(--e-card);--nav-bg:var(--e-nav);}
+
+/* Clean White dark nav border when style-b active */
+body.style-b nav{border-bottom:2px solid #111111;}
+body.style-b footer{border-top:2px solid #111111;}
+body.style-b .mobile-nav{border-bottom:2px solid #111111;}
 
 /* Bold Accent left stripe when style-e active */
 body.style-e #hero,
@@ -293,6 +300,15 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   section{padding:2.5rem 0;}
   .carousel-track{min-height:180px;}
 }
+
+/* ── ONBOARDING ANIMATION ── */
+.hint-pulse{animation:hintPulse 1s ease-in-out 3;}
+@keyframes hintPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 40%,transparent);}50%{transform:scale(1.18);box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 0%,transparent);}}
+.hint-arrow{position:fixed;z-index:500;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity 0.4s;}
+.hint-arrow.visible{opacity:1;}
+.hint-arrow-label{background:var(--text);color:var(--bg);font-size:0.72rem;font-weight:600;padding:5px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;}
+.hint-arrow-line{width:2px;height:24px;background:var(--text);border-radius:2px;}
+.hint-arrow-tip{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--text);}
 </style>
 </head>
 <body class="style-c">
@@ -458,8 +474,9 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="pkg-styles">
           <div class="pkg-styles-label">Available styles</div>
           <div class="pkg-style-pills">
-            <span class="pkg-style-pill">Dark Minimal</span>
+            <span class="pkg-style-pill">Clean White</span>
             <span class="pkg-style-pill locked">🔒 Warm Cream</span>
+            <span class="pkg-style-pill locked">🔒 Dark Minimal</span>
             <span class="pkg-style-pill locked">🔒 Bold Accent</span>
           </div>
         </div>
@@ -483,8 +500,9 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="pkg-styles">
           <div class="pkg-styles-label">Available styles</div>
           <div class="pkg-style-pills">
-            <span class="pkg-style-pill">Dark Minimal</span>
+            <span class="pkg-style-pill">Clean White</span>
             <span class="pkg-style-pill">Warm Cream</span>
+            <span class="pkg-style-pill locked">🔒 Dark Minimal</span>
             <span class="pkg-style-pill locked">🔒 Bold Accent</span>
           </div>
         </div>
@@ -508,8 +526,9 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="pkg-styles">
           <div class="pkg-styles-label">Available styles</div>
           <div class="pkg-style-pills">
-            <span class="pkg-style-pill">Dark Minimal</span>
+            <span class="pkg-style-pill">Clean White</span>
             <span class="pkg-style-pill">Warm Cream</span>
+            <span class="pkg-style-pill">Dark Minimal</span>
             <span class="pkg-style-pill">Bold Accent</span>
           </div>
         </div>
@@ -526,14 +545,15 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <h2 class="section-title">See it before you commit</h2>
       <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.88rem;">Switch styles using the dropdown above, or click a card below. Pick any accent color — it works across all styles.</p>
     </div>
-    <div class="preview-grid">
-      <div class="preview-card" id="prev-a" onclick="setStyle('a','Dark Minimal',null)">
-        <div class="preview-screen preview-screen-a preview-a">
-          <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
-          <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
+    <div class="preview-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="preview-card locked" id="prev-b" onclick="setStyle('b','Clean White',null)">
+        <div class="preview-screen preview-screen-b preview-b" style="background:#FFFFFF;border-bottom:3px solid #111;">
+          <div class="preview-mini-nav" style="background:#111;opacity:0.7"></div><div class="preview-mini-title" style="background:#111"></div>
+          <div class="preview-mini-sub" style="background:#888"></div><div class="preview-mini-sub2" style="background:#888"></div>
           <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
-        <div class="preview-footer"><div class="preview-name">Dark Minimal</div><div class="preview-desc">Sharp, modern, technical — all packages</div></div>
+        <div class="preview-footer"><div class="preview-name">Clean White</div><div class="preview-desc">Crisp, universal — Starter</div></div>
+        <div class="preview-lock">🔒 Starter</div>
       </div>
       <div class="preview-card active" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
         <div class="preview-screen preview-screen-c preview-c">
@@ -544,13 +564,22 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="preview-footer"><div class="preview-name">Warm Cream</div><div class="preview-desc">Soft, approachable — Internship Ready+</div></div>
         <div class="preview-lock">🔒 Internship Ready+</div>
       </div>
+      <div class="preview-card locked" id="prev-a" onclick="setStyle('a','Dark Minimal',null)">
+        <div class="preview-screen preview-screen-a preview-a">
+          <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
+          <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
+          <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
+        </div>
+        <div class="preview-footer"><div class="preview-name">Dark Minimal</div><div class="preview-desc">Sharp, technical — Stand Out</div></div>
+        <div class="preview-lock">🔒 Stand Out</div>
+      </div>
       <div class="preview-card locked" id="prev-e" onclick="setStyle('e','Bold Accent',null)">
         <div class="preview-screen preview-screen-e preview-e">
           <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
           <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
           <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
-        <div class="preview-footer"><div class="preview-name">Bold Accent</div><div class="preview-desc">Editorial, striking — Stand Out only</div></div>
+        <div class="preview-footer"><div class="preview-name">Bold Accent</div><div class="preview-desc">Editorial, striking — Stand Out</div></div>
         <div class="preview-lock">🔒 Stand Out</div>
       </div>
     </div>
@@ -595,7 +624,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="portfolio-info">
           <div class="portfolio-style">Dark Minimal</div>
           <div class="portfolio-title">Computer Science — Starter</div>
-          <div class="portfolio-pkg">Single page · Bio, about, links, contact</div>
+          <div class="portfolio-pkg">Clean White · Single page · Bio, links, contact</div>
         </div>
       </a>
       <a href="template-internship-ready.html" class="portfolio-card fade-in" onclick="return openExample('template-internship-ready.html')">
@@ -609,7 +638,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="portfolio-info">
           <div class="portfolio-style">Warm Cream</div>
           <div class="portfolio-title">Marketing — Internship Ready</div>
-          <div class="portfolio-pkg">Skills · 3 categories · 4 project cards</div>
+          <div class="portfolio-pkg">Warm Cream · Skills, 3 categories · 4 projects</div>
         </div>
       </a>
       <a href="template-stand-out.html" class="portfolio-card fade-in" onclick="return openExample('template-stand-out.html')">
@@ -623,7 +652,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="portfolio-info">
           <div class="portfolio-style">Bold Accent</div>
           <div class="portfolio-title">Finance — Stand Out</div>
-          <div class="portfolio-pkg">8 images · Credentials page · LinkedIn banner</div>
+          <div class="portfolio-pkg">Bold Accent · 8 images · Credentials · LinkedIn banner</div>
         </div>
       </a>
     </div>
@@ -716,7 +745,7 @@ function setStyle(style,label,optionEl){
   document.getElementById('styleBtnLabel').textContent=label;
   document.querySelectorAll('.style-option').forEach(o=>o.classList.remove('active'));
   if(optionEl)optionEl.classList.add('active');
-  ['a','c','e'].forEach(s=>{
+  ['a','b','c','e'].forEach(s=>{
     const card=document.getElementById('prev-'+s);
     if(card)card.classList.toggle('active',s===style);
   });
@@ -788,6 +817,55 @@ document.addEventListener('click',e=>{
     document.getElementById('hamburger').classList.remove('open');
   }
 });
+
+// ── ONBOARDING ANIMATION ──
+(function(){
+  const seen = sessionStorage.getItem('oyp_hint_seen');
+  if(seen) return;
+  sessionStorage.setItem('oyp_hint_seen','1');
+
+  // Wait for page to settle then animate
+  setTimeout(()=>{
+    const styleBtn = document.getElementById('styleBtn');
+    const swatches = document.getElementById('navSwatches');
+    if(!styleBtn || !swatches) return;
+
+    // Pulse the style button
+    styleBtn.classList.add('hint-pulse');
+    styleBtn.addEventListener('animationend', ()=>styleBtn.classList.remove('hint-pulse'), {once:true});
+
+    // Show floating label above style button
+    const hintStyle = document.getElementById('hintStyle');
+    const btnRect = styleBtn.getBoundingClientRect();
+    hintStyle.style.top = (btnRect.top - 60) + 'px';
+    hintStyle.style.left = (btnRect.left + btnRect.width/2 - 60) + 'px';
+    hintStyle.classList.add('visible');
+
+    // After 1.8s pulse swatches and show color hint
+    setTimeout(()=>{
+      hintStyle.classList.remove('visible');
+      const allSwatches = swatches.querySelectorAll('.swatch');
+      allSwatches.forEach((s,i)=>{
+        setTimeout(()=>{ s.classList.add('hint-pulse'); s.addEventListener('animationend',()=>s.classList.remove('hint-pulse'),{once:true}); }, i*80);
+      });
+      const hintColor = document.getElementById('hintColor');
+      const swRect = swatches.getBoundingClientRect();
+      hintColor.style.top = (swRect.top - 60) + 'px';
+      hintColor.style.left = (swRect.left + swRect.width/2 - 55) + 'px';
+      hintColor.classList.add('visible');
+      setTimeout(()=>hintColor.classList.remove('visible'), 2200);
+    }, 2000);
+  }, 1200);
+})();
+
 </script>
+
+<!-- Onboarding hint arrows -->
+<div class="hint-arrow" id="hintStyle">
+  <div class="hint-arrow-label">Try a style ↑</div>
+</div>
+<div class="hint-arrow" id="hintColor">
+  <div class="hint-arrow-label">Pick a color ↑</div>
+</div>
 </body>
 </html>
