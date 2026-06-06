@@ -6,55 +6,58 @@
 <title>Zara Voss — Computer Science</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --accent:#0284C7;
-  --bg:#0a0f1a;--bg2:#131929;--text:#f0f0f0;--muted:#8892a4;--border:#1e2a3a;--card:#131929;
+  --accent-dark:#0369a1;
+  --bg:#FFFFFF;--bg2:#F8F8F8;--text:#111111;--muted:#666666;--border:#E5E5E5;--card:#FFFFFF;
+  --nav-bg:rgba(255,255,255,0.97);
   --radius:12px;--radius-sm:8px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,26,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:2px solid #111111;}
 .nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:60px;}
-.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--text);text-decoration:none;}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:0.01em;}
 .nav-links{display:flex;gap:1.5rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:400;transition:color 0.2s;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:400;transition:color 0.2s;min-height:44px;display:flex;align-items:center;}
 .nav-links a:hover{color:var(--text);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:all 0.3s;border-radius:2px;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-nav{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(10,15,26,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:98;flex-direction:column;padding:1rem 1.5rem 1.5rem;}
+.mobile-nav{display:none;position:fixed;top:60px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:2px solid #111;z-index:98;flex-direction:column;padding:1rem 1.5rem 1.5rem;}
 .mobile-nav.open{display:flex;}
-.mobile-nav a{color:var(--text);text-decoration:none;font-size:1rem;padding:0.85rem 0;border-bottom:1px solid var(--border);display:block;}
+.mobile-nav a{color:var(--text);text-decoration:none;font-size:1rem;padding:0.85rem 0;border-bottom:1px solid var(--border);display:block;min-height:44px;}
 .mobile-nav a:last-child{border-bottom:none;}
 .container{max-width:900px;margin:0 auto;padding:0 1.5rem;}
 section{padding:5rem 0;}
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 80% 40%,color-mix(in srgb,var(--accent) 10%,transparent),transparent);}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden;background:var(--bg);}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 80% 40%,color-mix(in srgb,var(--accent) 6%,transparent),transparent);}
 .hero-inner{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;width:100%;}
-.hero-status{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;background:color-mix(in srgb,var(--accent) 12%,transparent);padding:0.3rem 0.75rem;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);}
+.hero-status{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;background:color-mix(in srgb,var(--accent) 10%,transparent);padding:0.3rem 0.75rem;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);}
 .status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;flex-shrink:0;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--text);margin-bottom:0.5rem;font-weight:500;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--text);margin-bottom:0.5rem;font-weight:500;letter-spacing:-0.01em;}
 .hero-title{font-size:1rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300;}
 .hero-bio{font-size:0.95rem;color:var(--muted);max-width:520px;line-height:1.85;margin-bottom:2rem;}
 .hero-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
-.link-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.1rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;background:var(--bg2);min-height:44px;}
+.link-pill{display:inline-flex;align-items:center;padding:0.6rem 1.1rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;background:var(--card);min-height:44px;}
 .link-pill:hover{border-color:var(--accent);color:var(--accent);}
 .link-pill.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
-.link-pill.primary:hover{opacity:0.9;}
+.link-pill.primary:hover{background:var(--accent-dark);}
 .hero-photo{width:200px;height:260px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;}
 .photo-placeholder{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
 
-/* ABOUT */
 #about{background:var(--bg2);}
+.section-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--text);margin-bottom:2rem;line-height:1.15;font-weight:500;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
 .about-text{color:var(--muted);font-size:0.93rem;line-height:1.85;}
 .about-text p+p{margin-top:1rem;}
@@ -62,33 +65,24 @@ section{padding:5rem 0;}
 .fact{padding:0.9rem 1.1rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);}
 .fact-label{font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem;}
 .fact-value{font-size:0.88rem;color:var(--text);font-weight:500;}
-.section-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--text);margin-bottom:2rem;line-height:1.15;font-weight:500;}
 
-/* CONTACT */
-#contact{background:var(--bg2);}
+#contact{background:var(--bg);}
 .contact-inner{max-width:520px;}
 .contact-text{color:var(--muted);font-size:0.93rem;line-height:1.85;margin-bottom:2rem;}
 .contact-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
 
-footer{border-top:1px solid var(--border);padding:1.5rem;}
+footer{border-top:2px solid #111;padding:1.5rem;}
 .footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-copy{font-size:0.73rem;color:var(--muted);}
-.footer-back-btn{display:inline-flex;align-items:center;gap:0.4rem;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;padding:0.5rem 1rem;border-radius:var(--radius-sm);cursor:pointer;border:none;font-family:'Inter',sans-serif;min-height:44px;transition:opacity 0.2s;}
+.footer-back-btn{display:inline-flex;align-items:center;gap:0.4rem;background:var(--accent);color:#fff;font-size:0.85rem;font-weight:600;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);cursor:pointer;border:none;font-family:'Inter',sans-serif;min-height:44px;transition:opacity 0.2s;}
 .footer-back-btn:hover{opacity:0.85;}
 
-.fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
-
-/* MOBILE */
 @media(max-width:768px){
-  .hamburger{display:flex;}
-  .nav-links{display:none;}
+  .hamburger{display:flex;}.nav-links{display:none;}
   section{padding:3.5rem 0;}
   .hero-inner{grid-template-columns:1fr;gap:2rem;}
-  .hero-photo{width:100%;height:260px;max-width:100%;}
+  .hero-photo{width:100%;max-width:100%;height:320px;order:-1;}
   .about-grid{grid-template-columns:1fr;}
-  .hero-links{flex-wrap:wrap;}
   .footer-inner{flex-direction:column;text-align:center;}
 }
 @media(max-width:480px){
@@ -106,7 +100,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-name">Zara Voss</a>
@@ -114,9 +107,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
@@ -129,14 +120,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
   <div class="container">
     <div class="hero-inner">
       <div>
-        <div class="hero-status"><span class="status-dot"></span> Open to Summer 2026 internships</div>
+        <div class="hero-status"><span class="status-dot"></span>Open to Summer 2026 internships</div>
         <h1 class="hero-name">Zara Voss</h1>
         <div class="hero-title">Computer Science · UC Berkeley · Class of 2026</div>
         <p class="hero-bio">Building full-stack applications and exploring systems programming. Passionate about clean code and scalable architecture. Seeking Summer 2026 SWE internships in the Bay Area.</p>
         <div class="hero-links">
           <a href="#" class="link-pill primary">Download Resume</a>
-          <a href="#" class="link-pill">LinkedIn</a>
-          <a href="#" class="link-pill">GitHub</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="link-pill">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="link-pill">GitHub</a>
           <a href="#contact" class="link-pill">Contact</a>
         </div>
       </div>
@@ -150,16 +141,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
 
 <section id="about">
   <div class="container">
-    <div class="fade-in">
-      <span class="section-eyebrow">About</span>
-      <h2 class="section-title">A little about me</h2>
-    </div>
+    <span class="section-eyebrow">About</span>
+    <h2 class="section-title">A little about me</h2>
     <div class="about-grid">
-      <div class="about-text fade-in">
+      <div class="about-text">
         <p>I'm a junior studying Computer Science at UC Berkeley with a focus on software engineering and distributed systems. I love building things that solve real problems — from small scripts to full production apps.</p>
-        <p>Outside of class I contribute to open source projects and spend too much time optimizing things that probably don't need optimizing. I'm looking for an internship where I can work on meaningful engineering challenges alongside people who care about their craft.</p>
+        <p>Outside of class I contribute to open source projects and spend too much time optimizing things that probably don't need optimizing. Looking for an internship where I can work on meaningful engineering challenges.</p>
       </div>
-      <div class="about-facts fade-in">
+      <div class="about-facts">
         <div class="fact"><div class="fact-label">School</div><div class="fact-value">UC Berkeley</div></div>
         <div class="fact"><div class="fact-label">Major</div><div class="fact-value">Computer Science</div></div>
         <div class="fact"><div class="fact-label">Expected graduation</div><div class="fact-value">May 2026</div></div>
@@ -172,14 +161,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
 
 <section id="contact">
   <div class="container">
-    <div class="contact-inner fade-in">
+    <div class="contact-inner">
       <span class="section-eyebrow">Contact</span>
       <h2 class="section-title">Let's connect</h2>
-      <p class="contact-text">I'm always open to talking about internship opportunities, interesting projects, or just grabbing coffee and talking tech. Feel free to reach out.</p>
+      <p class="contact-text">Always open to talking about internship opportunities, interesting projects, or just grabbing coffee and talking tech.</p>
       <div class="contact-links">
         <a href="mailto:zara@example.com" class="link-pill primary">Email me</a>
-        <a href="#" class="link-pill">LinkedIn</a>
-        <a href="#" class="link-pill">GitHub</a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="link-pill">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="link-pill">GitHub</a>
       </div>
     </div>
   </div>
@@ -189,26 +178,15 @@ footer{border-top:1px solid var(--border);padding:1.5rem;}
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Zara Voss</div>
     <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;">
-      <button class="footer-back-btn" onclick="window.opener ? window.close() : window.location.href='index.html'">← Back to Own Your Page</button>
+      <button class="footer-back-btn" onclick="window.opener?window.close():window.location.href='index.html'">← Back to Own Your Page</button>
       <span style="font-size:0.73rem;color:var(--muted);">Built by Own Your Page</span>
     </div>
   </div>
 </footer>
-
 <script>
-function toggleMobileNav(){
-  document.getElementById('mobileNav').classList.toggle('open');
-  document.getElementById('hamburger').classList.toggle('open');
-}
-function closeMobileNav(){
-  document.getElementById('mobileNav').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-}
-document.addEventListener('click',e=>{
-  if(!e.target.closest('nav')&&!e.target.closest('.mobile-nav'))closeMobileNav();
-});
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.mobile-nav'))closeMobileNav();});
 </script>
 </body>
 </html>
