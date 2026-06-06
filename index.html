@@ -306,7 +306,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 @keyframes hintPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 40%,transparent);}50%{transform:scale(1.18);box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 0%,transparent);}}
 .hint-bubble{position:fixed;z-index:500;pointer-events:none;opacity:0;transition:opacity 0.35s ease;transform:translateX(-50%);}
 .hint-bubble.visible{opacity:1;}
-.hint-bubble-label{background:#1a1a1a;color:#ffffff;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:20px;white-space:nowrap;font-family:'Inter',sans-serif;letter-spacing:0.03em;box-shadow:0 4px 16px rgba(0,0,0,0.25);}
+.hint-bubble-label{background:#FFFFFF;color:#111111;font-size:0.78rem;font-weight:700;padding:7px 16px;border-radius:20px;white-space:nowrap;font-family:'Inter',sans-serif;letter-spacing:0.03em;box-shadow:0 2px 12px rgba(0,0,0,0.12);border:2px solid var(--accent);}
 </style>
 </head>
 <body class="style-b">
@@ -331,11 +331,16 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="style-dropdown" id="styleDropdown">
+          <div class="style-option active" onclick="setStyle('b','Clean White',this)">
+            <div class="style-swatch" style="background:#FFFFFF;border:2px solid #111111"></div>Clean White
+          </div>
+          <div class="style-option" onclick="setStyle('c','Warm Cream',this)">
+            <div class="style-swatch" style="background:#F7F3ED;border:1px solid #D8D0C4"></div>Warm Cream
+            <span class="lock">Internship Ready+</span>
+          </div>
           <div class="style-option" onclick="setStyle('a','Dark Minimal',this)">
             <div class="style-swatch" style="background:#0a0f1a;border:1px solid #333"></div>Dark Minimal
-          </div>
-          <div class="style-option active" onclick="setStyle('c','Warm Cream',this)">
-            <div class="style-swatch" style="background:#F7F3ED;border:1px solid #D8D0C4"></div>Warm Cream
+            <span class="lock">Stand Out</span>
           </div>
           <div class="style-option" onclick="setStyle('e','Bold Accent',this)">
             <div class="style-swatch" style="background:#FAFAFA;border:1px solid #D0C8E8"></div>Bold Accent
