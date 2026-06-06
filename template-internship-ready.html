@@ -2,95 +2,121 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Theo Callum — Marketing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent:#7C3AED;
+  --accent:#EA580C;
   --bg:#F7F3ED;--bg2:#EDE8E0;--text:#2C2418;--muted:#7A6E5F;--border:#D8D0C4;--card:#FFFFFF;
   --radius:12px;--radius-sm:8px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,243,237,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
-.nav-name{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--text);text-decoration:none;font-weight:500;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,243,237,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:60px;}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--text);text-decoration:none;}
 .nav-links{display:flex;gap:1.5rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
 .nav-links a:hover{color:var(--text);}
-
-.container{max-width:900px;margin:0 auto;padding:0 2rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:all 0.3s;border-radius:2px;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(247,243,237,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:98;flex-direction:column;padding:1rem 1.5rem 1.5rem;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{color:var(--text);text-decoration:none;font-size:1rem;padding:0.85rem 0;border-bottom:1px solid var(--border);display:block;}
+.mobile-nav a:last-child{border-bottom:none;}
+.container{max-width:900px;margin:0 auto;padding:0 1.5rem;}
 section{padding:5rem 0;}
-.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
-.section-title{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);margin-bottom:2rem;line-height:1.2;font-weight:500;}
+.section-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--text);margin-bottom:2rem;line-height:1.15;font-weight:500;}
 
 /* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;}
-.hero-inner{display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:center;width:100%;}
-.hero-photo{width:240px;height:300px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.hero-photo img{width:100%;height:100%;object-fit:cover;}
-.photo-placeholder{font-family:'Fraunces',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
-.hero-status{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;background:color-mix(in srgb,var(--accent) 10%,transparent);padding:0.3rem 0.75rem;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+.hero-inner{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;width:100%;}
+.hero-photo{width:220px;height:280px;border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.photo-placeholder{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--accent);opacity:0.2;}
+.hero-status{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;background:color-mix(in srgb,var(--accent) 10%,transparent);padding:0.3rem 0.75rem;border-radius:20px;border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;flex-shrink:0;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero-name{font-family:'Fraunces',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;color:var(--text);margin-bottom:0.5rem;font-weight:500;}
-.hero-title{font-size:1rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300;}
-.hero-bio{font-size:0.98rem;color:var(--muted);max-width:480px;line-height:1.85;margin-bottom:2rem;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;color:var(--text);margin-bottom:0.5rem;font-weight:500;}
+.hero-title{font-size:0.95rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300;}
+.hero-bio{font-size:0.95rem;color:var(--muted);max-width:480px;line-height:1.85;margin-bottom:2rem;}
 .hero-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
-.link-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;background:var(--card);}
+.link-pill{display:inline-flex;align-items:center;padding:0.6rem 1.1rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all 0.2s;background:var(--card);min-height:44px;}
 .link-pill:hover{border-color:var(--accent);color:var(--accent);}
 .link-pill.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
-.link-pill.primary:hover{background:color-mix(in srgb,var(--accent) 85%,black);}
+.link-pill.primary:hover{opacity:0.9;}
 
 /* SKILLS */
 #skills{background:var(--bg2);}
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
 .skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;transition:all 0.2s;}
 .skill-card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--border));}
-.skill-category{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.skill-category{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
 .skill-list{display:flex;flex-direction:column;gap:0.4rem;}
-.skill-item{font-size:0.85rem;color:var(--muted);}
+.skill-item{font-size:0.83rem;color:var(--muted);}
 
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.2s;}
 .project-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 30%,var(--border));}
-.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;}
-.project-img img{width:100%;height:100%;object-fit:cover;}
+.project-img{height:180px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden;}
+.project-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;width:100%;height:100%;border:2px dashed var(--border);}
 .img-placeholder-icon{font-size:1.5rem;opacity:0.3;}
-.img-placeholder-text{font-size:0.75rem;color:var(--muted);opacity:0.6;}
+.img-placeholder-text{font-size:0.73rem;color:var(--muted);opacity:0.6;}
 .project-info{padding:1.25rem;}
-.project-name{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--text);margin-bottom:0.35rem;font-weight:500;}
-.project-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;}
+.project-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:0.35rem;font-weight:500;}
+.project-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:0.75rem;}
 .project-tags{display:flex;gap:0.4rem;flex-wrap:wrap;}
-.tag{font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:20px;background:var(--bg2);color:var(--muted);border:1px solid var(--border);}
+.tag{font-size:0.68rem;padding:0.2rem 0.6rem;border-radius:20px;background:var(--bg2);color:var(--muted);border:1px solid var(--border);}
 
 /* CONTACT */
 #contact{background:var(--bg2);}
 .contact-inner{max-width:520px;}
-.contact-text{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2rem;}
+.contact-text{color:var(--muted);font-size:0.93rem;line-height:1.85;margin-bottom:2rem;}
 .contact-links{display:flex;gap:0.75rem;flex-wrap:wrap;}
 
-footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
+footer{border-top:1px solid var(--border);padding:1.5rem;}
 .footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-copy{font-size:0.75rem;color:var(--muted);}
-.footer-credit a{font-size:0.75rem;color:var(--accent);text-decoration:none;}
+.footer-copy{font-size:0.73rem;color:var(--muted);}
+.footer-back-btn{display:inline-flex;align-items:center;gap:0.4rem;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;padding:0.5rem 1rem;border-radius:var(--radius-sm);cursor:pointer;border:none;font-family:'Inter',sans-serif;min-height:44px;transition:opacity 0.2s;}
+.footer-back-btn:hover{opacity:0.85;}
 
-@media(max-width:680px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-photo{display:none;}
-  .skills-grid{grid-template-columns:1fr 1fr;}
-  .projects-grid{grid-template-columns:1fr;}
-  .nav-links{display:none;}
-}
 .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.55s ease,transform 0.55s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .nav-links{display:none;}
+  section{padding:3.5rem 0;}
+  .hero-inner{grid-template-columns:1fr;gap:2rem;}
+  .hero-photo{width:100%;height:260px;max-width:100%;order:-1;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
+}
+@media(max-width:480px){
+  .skills-grid{grid-template-columns:1fr;}
+  .hero-links{flex-direction:column;}
+  .hero-links .link-pill{width:100%;justify-content:center;}
+  .contact-links{flex-direction:column;}
+  .contact-links .link-pill{width:100%;justify-content:center;}
+  .hero-name{font-size:2.4rem;}
+}
+@media(max-height:500px) and (orientation:landscape){
+  #hero{min-height:auto;padding-bottom:3rem;}
+  .hero-photo{height:180px;}
+  section{padding:2.5rem 0;}
+}
 </style>
 </head>
 <body>
@@ -103,15 +129,23 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
 
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-photo">
-        
-        <img src="headshot_theo.jpg" alt="Theo Callum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="photo-placeholder" style="display:none">T</div>
+        <img src="headshot_theo.jpg" alt="Theo Callum" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="display:none">T</div>
       </div>
       <div>
         <div class="hero-status"><span class="status-dot"></span> Open to Summer 2025 internships</div>
@@ -130,7 +164,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
 
 <section id="skills">
   <div class="container">
-    <span class="section-label fade-in">Skills</span>
+    <span class="section-eyebrow fade-in">Skills</span>
     <h2 class="section-title fade-in">What I bring to the table</h2>
     <div class="skills-grid">
       <div class="skill-card fade-in">
@@ -166,17 +200,11 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
 
 <section id="projects">
   <div class="container">
-    <span class="section-label fade-in">Projects</span>
+    <span class="section-eyebrow fade-in">Projects</span>
     <h2 class="section-title fade-in">Selected work</h2>
     <div class="projects-grid">
       <div class="project-card fade-in">
-        <div class="project-img">
-          <!-- Replace with: <img src="project1_theo.jpg" alt="Brand Audit Project"> -->
-          <div class="img-placeholder">
-            <div class="img-placeholder-icon">🖼</div>
-            <div class="img-placeholder-text">Project image goes here</div>
-          </div>
-        </div>
+        <div class="project-img"><div class="img-placeholder"><div class="img-placeholder-icon">🖼</div><div class="img-placeholder-text">Project image goes here</div></div></div>
         <div class="project-info">
           <div class="project-name">Brand Audit — Local Coffee Chain</div>
           <div class="project-desc">Conducted a full brand audit for a 3-location Boston coffee chain, identifying positioning gaps and delivering a 20-page strategic report with actionable recommendations.</div>
@@ -184,13 +212,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <!-- Replace with: <img src="project2_theo.jpg" alt="Social Campaign Project"> -->
-          <div class="img-placeholder">
-            <div class="img-placeholder-icon">🖼</div>
-            <div class="img-placeholder-text">Project image goes here</div>
-          </div>
-        </div>
+        <div class="project-img"><div class="img-placeholder"><div class="img-placeholder-icon">🖼</div><div class="img-placeholder-text">Project image goes here</div></div></div>
         <div class="project-info">
           <div class="project-name">Instagram Growth Campaign</div>
           <div class="project-desc">Designed and executed a 6-week Instagram content strategy for a student organization, growing followers from 400 to 1,200 and increasing average engagement by 65%.</div>
@@ -198,13 +220,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <!-- Replace with: <img src="project3_theo.jpg" alt="Market Research Project"> -->
-          <div class="img-placeholder">
-            <div class="img-placeholder-icon">🖼</div>
-            <div class="img-placeholder-text">Project image goes here</div>
-          </div>
-        </div>
+        <div class="project-img"><div class="img-placeholder"><div class="img-placeholder-icon">🖼</div><div class="img-placeholder-text">Project image goes here</div></div></div>
         <div class="project-info">
           <div class="project-name">Gen Z Consumer Report</div>
           <div class="project-desc">Led a team of 4 in producing a primary research report on Gen Z purchasing behavior in sustainable fashion, surveying 200+ respondents and presenting findings to faculty.</div>
@@ -212,13 +228,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
         </div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <!-- Replace with: <img src="project4_theo.jpg" alt="Email Campaign Project"> -->
-          <div class="img-placeholder">
-            <div class="img-placeholder-icon">🖼</div>
-            <div class="img-placeholder-text">Project image goes here</div>
-          </div>
-        </div>
+        <div class="project-img"><div class="img-placeholder"><div class="img-placeholder-icon">🖼</div><div class="img-placeholder-text">Project image goes here</div></div></div>
         <div class="project-info">
           <div class="project-name">Email Re-engagement Campaign</div>
           <div class="project-desc">Designed a 5-email re-engagement sequence for a nonprofit's lapsed donor list using HubSpot, achieving a 22% open rate against the 14% industry average.</div>
@@ -232,7 +242,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
 <section id="contact">
   <div class="container">
     <div class="contact-inner fade-in">
-      <span class="section-label">Contact</span>
+      <span class="section-eyebrow">Contact</span>
       <h2 class="section-title">Let's talk</h2>
       <p class="contact-text">I'm actively looking for Summer 2025 marketing internships in New York or Boston. If you're working on something interesting or want to connect, I'd love to hear from you.</p>
       <div class="contact-links">
@@ -246,14 +256,25 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2rem;}
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2025 Theo Callum</div>
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <button style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--accent);color:#fff;font-size:0.85rem;font-weight:600;padding:0.55rem 1.1rem;border-radius:8px;cursor:pointer;border:none;font-family:inherit;letter-spacing:0.01em;" onclick="window.opener ? window.close() : window.location.href='index.html'">← Back to Own Your Page</button>
-      <span style="font-size:0.75rem;color:var(--muted);">Built by Own Your Page</span>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <button class="footer-back-btn" onclick="window.opener ? window.close() : window.location.href='index.html'">← Back to Own Your Page</button>
+      <span style="font-size:0.73rem;color:var(--muted);">Built by Own Your Page</span>
     </div>
   </div>
 </footer>
 
 <script>
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('nav')&&!e.target.closest('.mobile-nav'))closeMobileNav();
+});
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 </script>
