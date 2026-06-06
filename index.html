@@ -2,44 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Own Your Page — Personal Bio Sites for College Students</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --accent: #7C3AED;
-  --accent-light: #EDE9FE;
-  --accent-dark: #5B21B6;
+  --accent: #DB2777;
+  --accent-dark: #be185d;
   --a-bg:#0a0f1a;--a-bg2:#131929;--a-text:#f0f0f0;--a-muted:#8892a4;--a-border:#1e2a3a;--a-card:#131929;--a-nav:rgba(10,15,26,0.92);
-  --c-bg:#F7F3ED;--c-bg2:#EDE8E0;--c-text:#2C2418;--c-muted:#7A6E5F;--c-border:#D8D0C4;--c-card:#FFFFFF;--c-nav:rgba(247,243,237,0.92);
+  --c-bg:#F7F3ED;--c-bg2:#EDE8E0;--c-text:#2C2418;--c-muted:#7A6E5F;--c-border:#D8D0C4;--c-card:#FFFFFF;--c-nav:rgba(247,243,237,0.95);
   --e-bg:#FAFAFA;--e-bg2:#F0EEF8;--e-text:#111111;--e-muted:#555555;--e-border:#D0C8E8;--e-card:#FFFFFF;--e-nav:rgba(250,250,250,0.95);
-  --bg:var(--a-bg);--bg2:var(--a-bg2);--text:var(--a-text);--muted:var(--a-muted);--border:var(--a-border);--card:var(--a-card);--nav-bg:var(--a-nav);
+  --bg:var(--c-bg);--bg2:var(--c-bg2);--text:var(--c-text);--muted:var(--c-muted);--border:var(--c-border);--card:var(--c-card);--nav-bg:var(--c-nav);
   --radius:12px;--radius-sm:8px;--transition:0.35s cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.7;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.7;overflow-x:hidden;}
 body.style-a{--bg:var(--a-bg);--bg2:var(--a-bg2);--text:var(--a-text);--muted:var(--a-muted);--border:var(--a-border);--card:var(--a-card);--nav-bg:var(--a-nav);}
 body.style-c{--bg:var(--c-bg);--bg2:var(--c-bg2);--text:var(--c-text);--muted:var(--c-muted);--border:var(--c-border);--card:var(--c-card);--nav-bg:var(--c-nav);}
 body.style-e{--bg:var(--e-bg);--bg2:var(--e-bg2);--text:var(--e-text);--muted:var(--e-muted);--border:var(--e-border);--card:var(--e-card);--nav-bg:var(--e-nav);}
 
+/* Bold Accent left stripe when style-e active */
+body.style-e #hero,
+body.style-e #packages,
+body.style-e #preview,
+body.style-e #how,
+body.style-e #portfolio,
+body.style-e #faq,
+body.style-e #contact{border-left:6px solid var(--accent);}
+body.style-e nav{border-bottom:3px solid var(--accent);border-left:none;}
+
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background var(--transition),border-color var(--transition);}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem;}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);text-decoration:none;transition:color var(--transition);white-space:nowrap;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--text);text-decoration:none;transition:color var(--transition);white-space:nowrap;letter-spacing:0.01em;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;letter-spacing:0.02em;transition:color var(--transition);}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.03em;transition:color var(--transition);}
 .nav-links a:hover{color:var(--text);}
 .nav-controls{display:flex;align-items:center;gap:0.75rem;}
 .style-selector{position:relative;}
-.style-btn{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;padding:0.4rem 0.85rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:all var(--transition);white-space:nowrap;}
+.style-btn{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;padding:0.4rem 0.85rem;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:all var(--transition);white-space:nowrap;}
 .style-btn:hover{border-color:var(--accent);}
 .style-btn svg{width:14px;height:14px;transition:transform 0.2s;}
 .style-btn.open svg{transform:rotate(180deg);}
-.style-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,0.15);opacity:0;pointer-events:none;transform:translateY(-4px);transition:all 0.2s;z-index:200;}
+.style-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,0.12);opacity:0;pointer-events:none;transform:translateY(-4px);transition:all 0.2s;z-index:200;}
 .style-dropdown.open{opacity:1;pointer-events:all;transform:translateY(0);}
-.style-option{padding:0.7rem 1rem;cursor:pointer;font-size:0.85rem;color:var(--text);display:flex;align-items:center;gap:0.6rem;transition:background 0.15s;}
+.style-option{padding:0.7rem 1rem;cursor:pointer;font-size:0.83rem;color:var(--text);display:flex;align-items:center;gap:0.6rem;transition:background 0.15s;}
 .style-option:hover{background:var(--bg2);}
 .style-option.active{color:var(--accent);font-weight:500;}
 .style-option .lock{font-size:0.68rem;color:var(--muted);margin-left:auto;white-space:nowrap;}
@@ -53,15 +62,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);bac
 section{padding:6rem 0;}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden;}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden;transition:border-color var(--transition);}
 .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 70% 50%,color-mix(in srgb,var(--accent) 8%,transparent),transparent);transition:background var(--transition);}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;}
-.hero-label{font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:block;}
-.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;color:var(--text);margin-bottom:1.5rem;transition:color var(--transition);}
+.hero-eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:block;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);line-height:1.05;color:var(--text);margin-bottom:1.5rem;transition:color var(--transition);font-weight:500;letter-spacing:-0.01em;}
 .hero-title em{font-style:italic;color:var(--accent);}
-.hero-sub{font-size:1.1rem;color:var(--muted);max-width:480px;margin-bottom:2.5rem;line-height:1.75;transition:color var(--transition);}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:480px;margin-bottom:2.5rem;line-height:1.8;transition:color var(--transition);}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.75rem;border-radius:var(--radius-sm);font-size:0.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.2s;border:none;font-family:'DM Sans',sans-serif;letter-spacing:0.01em;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;border-radius:var(--radius-sm);font-size:0.875rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.2s;border:none;font-family:'Inter',sans-serif;letter-spacing:0.02em;}
 .btn-primary{background:var(--accent);color:#fff;}
 .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);}
 .btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border);}
@@ -70,18 +79,18 @@ section{padding:6rem 0;}
 
 /* CAROUSEL */
 .hero-carousel{width:100%;max-width:380px;position:relative;}
-.carousel-track{position:relative;min-height:260px;}
-.hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:background var(--transition),border-color var(--transition),opacity 0.7s ease,transform 0.7s ease;box-shadow:0 20px 60px rgba(0,0,0,0.12);position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(10px);pointer-events:none;will-change:opacity,transform;}
+.carousel-track{position:relative;min-height:270px;}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:background var(--transition),border-color var(--transition);box-shadow:0 20px 60px rgba(0,0,0,0.08);position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(10px);pointer-events:none;will-change:opacity,transform;}
 .hero-card.active{opacity:1;transform:translateY(0);pointer-events:all;position:relative;}
 .hero-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
-.hero-avatar{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-size:1.4rem;font-family:'DM Serif Display',serif;flex-shrink:0;overflow:hidden;}
+.hero-avatar{width:52px;height:52px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;font-family:'Cormorant Garamond',serif;flex-shrink:0;overflow:hidden;}
 .hero-avatar img{width:100%;height:100%;object-fit:cover;}
-.hero-card-name{font-weight:600;font-size:1rem;color:var(--text);}
-.hero-card-title{font-size:0.8rem;color:var(--muted);margin-top:2px;}
-.hero-card-bio{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.hero-card-name{font-weight:600;font-size:0.95rem;color:var(--text);font-family:'Cormorant Garamond',serif;font-size:1.1rem;}
+.hero-card-title{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.hero-card-bio{font-size:0.83rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
 .hero-card-links{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.hero-link-pill{font-size:0.75rem;padding:0.3rem 0.75rem;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--bg2);transition:all var(--transition);}
-.hero-badge{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;padding:0.25rem 0.6rem;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);border-radius:20px;font-weight:500;margin-bottom:1rem;}
+.hero-link-pill{font-size:0.72rem;padding:0.28rem 0.7rem;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--bg2);transition:all var(--transition);}
+.hero-badge{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.7rem;padding:0.22rem 0.6rem;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border-radius:20px;font-weight:500;margin-bottom:1rem;}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .carousel-dots{display:flex;gap:6px;justify-content:center;margin-top:1.25rem;}
@@ -89,21 +98,21 @@ section{padding:6rem 0;}
 .carousel-dot.active{background:var(--accent);width:20px;border-radius:3px;}
 
 /* ABOUT */
-#about{background:var(--bg2);transition:background var(--transition);}
+#about{background:var(--bg2);transition:background var(--transition),border-color var(--transition);}
 .about-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center;}
 .about-photo-wrap{position:relative;}
 .about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background var(--transition);}
-.about-photo img{width:100%;height:100%;object-fit:cover;}
-.about-photo-placeholder{font-family:'DM Serif Display',serif;font-size:4rem;color:var(--accent);opacity:0.3;}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.about-photo-placeholder{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--accent);opacity:0.3;}
 .about-tag{position:absolute;bottom:1rem;left:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.5rem 0.85rem;font-size:0.78rem;font-weight:500;color:var(--text);transition:background var(--transition);}
-.section-label{font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block;}
-.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);line-height:1.2;color:var(--text);margin-bottom:1.5rem;transition:color var(--transition);}
+.section-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;color:var(--text);margin-bottom:1.5rem;transition:color var(--transition);font-weight:500;}
 .section-title em{font-style:italic;color:var(--accent);}
-.about-text{color:var(--muted);font-size:1rem;line-height:1.8;transition:color var(--transition);}
+.about-text{color:var(--muted);font-size:0.95rem;line-height:1.85;transition:color var(--transition);}
 .about-text p+p{margin-top:1rem;}
 .about-stats{display:flex;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);}
-.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);line-height:1;}
-.stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.25rem;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--accent);line-height:1;font-weight:500;}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.25rem;}
 
 /* PACKAGES */
 .packages-header{text-align:center;margin-bottom:3rem;}
@@ -111,24 +120,24 @@ section{padding:6rem 0;}
 .pkg-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;position:relative;transition:all var(--transition);}
 .pkg-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,var(--border));}
 .pkg-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
-.pkg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:0.72rem;font-weight:600;padding:0.25rem 0.85rem;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;}
-.pkg-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:0.25rem;transition:color var(--transition);}
-.pkg-tagline{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;}
-.pkg-price{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--text);line-height:1;margin-bottom:1.5rem;transition:color var(--transition);}
+.pkg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:0.7rem;font-weight:600;padding:0.25rem 0.85rem;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--text);margin-bottom:0.25rem;transition:color var(--transition);}
+.pkg-tagline{font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5;}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:500;color:var(--text);line-height:1;margin-bottom:1.5rem;transition:color var(--transition);}
 .pkg-price sup{font-size:1.2rem;vertical-align:super;}
 .pkg-divider{border:none;border-top:1px solid var(--border);margin-bottom:1.5rem;}
-.pkg-features{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem;}
-.pkg-features li{font-size:0.85rem;color:var(--muted);display:flex;align-items:flex-start;gap:0.6rem;transition:color var(--transition);}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:0.65rem;margin-bottom:2rem;}
+.pkg-features li{font-size:0.83rem;color:var(--muted);display:flex;align-items:flex-start;gap:0.6rem;transition:color var(--transition);line-height:1.5;}
 .pkg-features li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px;}
-.pkg-styles{margin-bottom:1.5rem;padding:0.85rem;background:var(--bg2);border-radius:var(--radius-sm);font-size:0.8rem;transition:background var(--transition);}
-.pkg-styles-label{color:var(--muted);margin-bottom:0.4rem;font-size:0.75rem;}
+.pkg-styles{margin-bottom:1.5rem;padding:0.85rem;background:var(--bg2);border-radius:var(--radius-sm);transition:background var(--transition);}
+.pkg-styles-label{color:var(--muted);margin-bottom:0.4rem;font-size:0.72rem;}
 .pkg-style-pills{display:flex;gap:0.4rem;flex-wrap:wrap;}
-.pkg-style-pill{font-size:0.72rem;padding:0.2rem 0.6rem;border-radius:20px;border:1px solid var(--border);color:var(--text);background:var(--card);transition:all var(--transition);}
-.pkg-style-pill.locked{color:var(--muted);opacity:0.5;display:flex;align-items:center;gap:0.3rem;}
+.pkg-style-pill{font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:20px;border:1px solid var(--border);color:var(--text);background:var(--card);transition:all var(--transition);}
+.pkg-style-pill.locked{color:var(--muted);opacity:0.5;}
 .pkg-cta{width:100%;text-align:center;justify-content:center;}
 
 /* STYLE PREVIEW */
-#preview{background:var(--bg2);transition:background var(--transition);}
+#preview{background:var(--bg2);transition:background var(--transition),border-color var(--transition);}
 .preview-header{text-align:center;margin-bottom:3rem;}
 .preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .preview-card{border-radius:var(--radius);overflow:hidden;border:2px solid var(--border);cursor:pointer;transition:all 0.2s;position:relative;}
@@ -136,13 +145,14 @@ section{padding:6rem 0;}
 .preview-card.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent);}
 .preview-card.locked{opacity:0.6;cursor:default;}
 .preview-card.locked:hover{transform:none;border-color:var(--border);}
-.preview-screen{height:180px;padding:1rem;position:relative;}
+.preview-screen{height:180px;padding:1rem;position:relative;overflow:hidden;}
 .preview-screen-a{background:#0a0f1a;}
 .preview-screen-c{background:#F7F3ED;}
 .preview-screen-e{background:#FAFAFA;}
-.preview-screen-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);}
+/* Bold accent stripe on preview card */
+.preview-screen-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent);}
 .preview-mini-nav{height:8px;border-radius:2px;margin-bottom:0.6rem;opacity:0.3;}
-.preview-mini-title{height:12px;border-radius:2px;margin-bottom:0.4rem;width:60%;}
+.preview-mini-title{height:14px;border-radius:2px;margin-bottom:0.4rem;width:60%;}
 .preview-mini-sub{height:7px;border-radius:2px;margin-bottom:0.3rem;width:80%;opacity:0.4;}
 .preview-mini-sub2{height:7px;border-radius:2px;margin-bottom:0.8rem;width:65%;opacity:0.4;}
 .preview-mini-btn{height:18px;border-radius:4px;width:80px;}
@@ -153,9 +163,9 @@ section{padding:6rem 0;}
 .preview-e .preview-mini-nav,.preview-e .preview-mini-title{background:#111;}
 .preview-e .preview-mini-sub,.preview-e .preview-mini-sub2{background:#555;}
 .preview-footer{padding:0.85rem 1rem;background:var(--card);border-top:1px solid var(--border);transition:background var(--transition),border-color var(--transition);}
-.preview-name{font-weight:600;font-size:0.85rem;color:var(--text);transition:color var(--transition);}
+.preview-name{font-weight:600;font-size:0.85rem;color:var(--text);transition:color var(--transition);font-family:'Cormorant Garamond',serif;}
 .preview-desc{font-size:0.72rem;color:var(--muted);margin-top:2px;transition:color var(--transition);}
-.preview-lock{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.5);color:white;border-radius:4px;padding:0.15rem 0.4rem;font-size:0.65rem;display:flex;align-items:center;gap:0.3rem;}
+.preview-lock{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.5);color:white;border-radius:4px;padding:0.15rem 0.4rem;font-size:0.65rem;}
 .color-section{margin-top:3rem;text-align:center;}
 .color-section-label{font-size:0.82rem;color:var(--muted);margin-bottom:1rem;}
 .color-palette{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
@@ -168,12 +178,12 @@ section{padding:6rem 0;}
 /* HOW IT WORKS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;}
 .step{text-align:center;}
-.step-num{width:48px;height:48px;border-radius:50%;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);font-family:'DM Serif Display',serif;font-size:1.3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);transition:background var(--transition);}
-.step-title{font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:0.5rem;transition:color var(--transition);}
-.step-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;transition:color var(--transition);}
+.step-num{width:48px;height:48px;border-radius:50%;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);}
+.step-title{font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.5rem;transition:color var(--transition);}
+.step-desc{font-size:0.8rem;color:var(--muted);line-height:1.65;transition:color var(--transition);}
 
 /* PORTFOLIO */
-#portfolio{background:var(--bg2);transition:background var(--transition);}
+#portfolio{background:var(--bg2);transition:background var(--transition),border-color var(--transition);}
 .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
 .portfolio-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);display:block;text-decoration:none;position:relative;}
 .portfolio-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,var(--border));}
@@ -183,40 +193,39 @@ section{padding:6rem 0;}
 .portfolio-thumb-e{background:#FAFAFA;border-bottom:1px solid #D0C8E8;}
 .portfolio-thumb-e::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent);}
 .portfolio-info{padding:1rem 1.25rem;}
-.portfolio-style{font-size:0.72rem;color:var(--accent);font-weight:500;margin-bottom:0.25rem;letter-spacing:0.05em;text-transform:uppercase;}
-.portfolio-title{font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.25rem;transition:color var(--transition);}
-.portfolio-pkg{font-size:0.75rem;color:var(--muted);}
-/* Back to OYP button overlay */
+.portfolio-style{font-size:0.7rem;color:var(--accent);font-weight:500;margin-bottom:0.25rem;letter-spacing:0.06em;text-transform:uppercase;}
+.portfolio-title{font-weight:600;font-size:0.88rem;color:var(--text);margin-bottom:0.25rem;transition:color var(--transition);font-family:'Cormorant Garamond',serif;font-size:1rem;}
+.portfolio-pkg{font-size:0.73rem;color:var(--muted);}
 .portfolio-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.25s;}
-.portfolio-card:hover .portfolio-overlay{background:rgba(0,0,0,0.45);opacity:1;}
-.portfolio-overlay-btn{background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;pointer-events:none;}
+.portfolio-card:hover .portfolio-overlay{background:rgba(0,0,0,0.4);opacity:1;}
+.portfolio-overlay-btn{background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);pointer-events:none;}
 
 /* FAQ */
 .faq-list{max-width:720px;margin:3rem auto 0;}
 .faq-item{border-bottom:1px solid var(--border);transition:border-color var(--transition);}
-.faq-q{width:100%;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;color:var(--text);text-align:left;padding:1.25rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color var(--transition);}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:500;color:var(--text);text-align:left;padding:1.25rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color var(--transition);}
 .faq-q:hover{color:var(--accent);}
 .faq-icon{flex-shrink:0;width:20px;height:20px;color:var(--muted);transition:transform 0.25s,color 0.2s;}
 .faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent);}
-.faq-a{font-size:0.88rem;color:var(--muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;}
+.faq-a{font-size:0.87rem;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;}
 .faq-item.open .faq-a{max-height:300px;padding-bottom:1.25rem;}
 
 /* CONTACT */
-#contact{background:var(--bg2);text-align:center;transition:background var(--transition);}
+#contact{background:var(--bg2);text-align:center;transition:background var(--transition),border-color var(--transition);}
 .contact-inner{max-width:560px;margin:0 auto;}
-.contact-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--text);margin-bottom:1rem;transition:color var(--transition);}
-.contact-sub{color:var(--muted);margin-bottom:2.5rem;line-height:1.7;transition:color var(--transition);}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:500;color:var(--text);margin-bottom:1rem;transition:color var(--transition);}
+.contact-sub{color:var(--muted);margin-bottom:2.5rem;line-height:1.75;font-size:0.95rem;transition:color var(--transition);}
 .contact-actions{display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.contact-email{font-size:0.85rem;color:var(--muted);transition:color var(--transition);}
+.contact-email{font-size:0.83rem;color:var(--muted);}
 .contact-email a{color:var(--accent);text-decoration:none;}
-.contact-note{font-size:0.78rem;color:var(--muted);opacity:0.7;}
+.contact-note{font-size:0.76rem;color:var(--muted);opacity:0.7;}
 
 footer{border-top:1px solid var(--border);padding:2rem;transition:border-color var(--transition);}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);transition:color var(--transition);}
-.footer-copy{font-size:0.78rem;color:var(--muted);transition:color var(--transition);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--text);transition:color var(--transition);}
+.footer-copy{font-size:0.76rem;color:var(--muted);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-size:0.8rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--accent);}
 
 @media(max-width:768px){
@@ -229,12 +238,64 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   .steps{grid-template-columns:1fr 1fr;}
   .portfolio-grid{grid-template-columns:1fr;}
   .nav-inner,.container{padding:0 1rem;}
+  body.style-e #hero,body.style-e #packages,body.style-e #preview,body.style-e #how,body.style-e #portfolio,body.style-e #faq,body.style-e #contact{border-left:none;border-top:4px solid var(--accent);}
 }
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ── MOBILE ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;z-index:200;flex-shrink:0;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:all 0.3s;border-radius:2px;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:98;flex-direction:column;padding:1rem 1.5rem 1.5rem;transition:background var(--transition);}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{color:var(--text);text-decoration:none;font-size:1rem;font-weight:400;padding:0.85rem 0;border-bottom:1px solid var(--border);transition:color 0.2s;letter-spacing:0.02em;}
+.mobile-nav a:last-child{border-bottom:none;}
+.mobile-nav a:hover,.mobile-nav a:active{color:var(--accent);}
+
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .color-swatches{display:none;}
+  .style-btn span{display:none;}
+  .style-btn{padding:0.4rem 0.5rem;}
+  body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
+  .btn,.pkg-cta,.faq-q{min-height:44px;}
+  section{padding:3.5rem 0;}
+  .nav-inner,.container{padding:0 1.25rem;}
+  .hero-inner{grid-template-columns:1fr;gap:2rem;}
+  .hero-visual{display:flex !important;}
+  .hero-carousel{max-width:100%;}
+  .carousel-track{min-height:220px;}
+  .about-inner{grid-template-columns:1fr;gap:2rem;}
+  .about-photo{aspect-ratio:4/3;}
+  .packages-grid{grid-template-columns:1fr;}
+  .preview-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;gap:0.75rem;}
+  .footer-links{justify-content:center;}
+  body.style-e #hero,body.style-e #packages,body.style-e #preview,body.style-e #how,body.style-e #portfolio,body.style-e #faq,body.style-e #contact{border-left:none;border-top:4px solid var(--accent);}
+}
+@media(max-width:480px){
+  .steps{grid-template-columns:1fr;}
+  .about-stats{flex-direction:column;gap:1.25rem;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn{width:100%;justify-content:center;}
+  .contact-actions .btn{width:100%;}
+  .pkg-style-pills{flex-wrap:wrap;}
+  .hero-title{font-size:2.4rem;}
+}
+@media(max-height:500px) and (orientation:landscape){
+  #hero{min-height:auto;padding-bottom:3rem;}
+  .hero-visual{display:none !important;}
+  section{padding:2.5rem 0;}
+  .carousel-track{min-height:180px;}
+}
 </style>
 </head>
-<body class="style-a">
+<body class="style-c">
 
 <nav>
   <div class="nav-inner">
@@ -247,20 +308,20 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-controls">
       <div class="color-swatches" id="navSwatches"></div>
       <div class="style-selector">
         <button class="style-btn" id="styleBtn" onclick="toggleDropdown()">
-          <span id="styleBtnLabel">Dark Minimal</span>
+          <span id="styleBtnLabel">Warm Cream</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="style-dropdown" id="styleDropdown">
-          <div class="style-option active" onclick="setStyle('a','Dark Minimal',this)">
+          <div class="style-option" onclick="setStyle('a','Dark Minimal',this)">
             <div class="style-swatch" style="background:#0a0f1a;border:1px solid #333"></div>Dark Minimal
           </div>
-          <div class="style-option" onclick="setStyle('c','Warm Cream',this)">
+          <div class="style-option active" onclick="setStyle('c','Warm Cream',this)">
             <div class="style-swatch" style="background:#F7F3ED;border:1px solid #D8D0C4"></div>Warm Cream
-            <span class="lock">Internship Ready+</span>
           </div>
           <div class="style-option" onclick="setStyle('e','Bold Accent',this)">
             <div class="style-swatch" style="background:#FAFAFA;border:1px solid #D0C8E8"></div>Bold Accent
@@ -271,13 +332,21 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
     </div>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#packages" onclick="closeMobileNav()">Packages</a>
+  <a href="#preview" onclick="closeMobileNav()">Styles</a>
+  <a href="#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
 
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="container">
     <div class="hero-inner">
       <div>
-        <span class="hero-label">Own Your Page</span>
+        <span class="hero-eyebrow">Own Your Page</span>
         <h1 class="hero-title">Your personal website.<br><em>Yours forever.</em></h1>
         <p class="hero-sub">Clean, professional bio sites for college students — one payment, no monthly fees, you own everything. Starting at $49.</p>
         <div class="hero-actions">
@@ -314,7 +383,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
               <div class="hero-badge"><span class="hero-badge-dot"></span> Open to internships</div>
               <div class="hero-card-header">
                 <div class="hero-avatar"><img src="headshot_noa.jpg" alt="Noa Reyes" onerror="this.parentElement.textContent='N'"></div>
-                <div><div class="hero-card-name">Noa Reyes</div><div class="hero-card-title">Finance · NYU · 2026</div></div>
+                <div><div class="hero-card-name">Noa Reyes</div><div class="hero-card-name">Noa Reyes</div><div class="hero-card-title">Finance · NYU · 2026</div></div>
               </div>
               <p class="hero-card-bio">Interested in investment banking and financial modeling. Seeking Summer 2026 finance internships in New York City.</p>
               <div class="hero-card-links">
@@ -344,7 +413,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="about-tag">UCLA · Mechanical Engineering</div>
       </div>
       <div class="fade-in">
-        <span class="section-label">About</span>
+        <span class="section-eyebrow">About</span>
         <h2 class="section-title">Built by a student,<br><em>for students.</em></h2>
         <div class="about-text">
           <p>I'm Logan, a Mechanical Engineering student at UCLA — and I built Own Your Page because I know exactly what it's like to be applying for internships with nothing but a LinkedIn and a resume.</p>
@@ -364,21 +433,23 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 <section id="packages">
   <div class="container">
     <div class="packages-header fade-in">
-      <span class="section-label">Packages</span>
+      <span class="section-eyebrow">Packages</span>
       <h2 class="section-title">Pick your package</h2>
-      <p style="color:var(--muted);max-width:500px;margin:0 auto;font-size:0.95rem;">All packages include full ownership — the code is transferred to your GitHub account when we're done.</p>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto;font-size:0.92rem;">All packages include full ownership — the code is transferred to your GitHub account when we're done. No monthly fees, ever.</p>
     </div>
     <div class="packages-grid">
+      <!-- STARTER -->
       <div class="pkg-card fade-in">
         <div class="pkg-name">Starter</div>
-        <div class="pkg-tagline">The essentials to get found online.</div>
+        <div class="pkg-tagline">Everything you need to get found — clean, professional, and shareable.</div>
         <div class="pkg-price"><sup>$</sup>49</div>
         <hr class="pkg-divider">
         <ul class="pkg-features">
           <li>Single scrollable page</li>
-          <li>Name, photo, bio</li>
-          <li>Social links + resume link</li>
-          <li>Contact button</li>
+          <li>Name, photo, bio + internship status badge</li>
+          <li>LinkedIn, GitHub, resume + social links</li>
+          <li>About section with school, major, grad year, location</li>
+          <li>Contact section</li>
           <li>Your choice of accent color</li>
           <li>Mobile friendly</li>
           <li>1 round of revisions</li>
@@ -394,16 +465,19 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         </div>
         <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-secondary pkg-cta">Get Started</a>
       </div>
+      <!-- INTERNSHIP READY -->
       <div class="pkg-card featured fade-in">
         <div class="pkg-badge">Most Popular</div>
         <div class="pkg-name">Internship Ready</div>
-        <div class="pkg-tagline">For students actively applying and ready to show their work.</div>
+        <div class="pkg-tagline">Show what you can do — skills, projects, and proof of your work.</div>
         <div class="pkg-price"><sup>$</sup>89</div>
         <hr class="pkg-divider">
         <ul class="pkg-features">
           <li>Everything in Starter</li>
-          <li>Skills section</li>
-          <li>Projects section with up to 5 images</li>
+          <li>Skills section — up to 3 categories</li>
+          <li>Projects section — up to 4 project cards</li>
+          <li>1 image per project card</li>
+          <li>Project tags + descriptions</li>
           <li>2 rounds of revisions</li>
         </ul>
         <div class="pkg-styles">
@@ -416,17 +490,19 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         </div>
         <a href="https://instagram.com/ownyourpage.co" target="_blank" rel="noopener noreferrer" class="btn btn-primary pkg-cta">Get Started</a>
       </div>
+      <!-- STAND OUT -->
       <div class="pkg-card fade-in">
         <div class="pkg-name">Stand Out</div>
-        <div class="pkg-tagline">For students who want to make a real impression.</div>
+        <div class="pkg-tagline">The full picture — credentials, animations, and a LinkedIn presence to match.</div>
         <div class="pkg-price"><sup>$</sup>149</div>
         <hr class="pkg-divider">
         <ul class="pkg-features">
           <li>Everything in Internship Ready</li>
-          <li>Second page — certifications, achievements, awards</li>
-          <li>Hover effects + scroll animations</li>
-          <li>LinkedIn banner graphic</li>
-          <li>Up to 8 images</li>
+          <li>Up to 8 project images across project cards</li>
+          <li>Second page — certifications, awards, coursework</li>
+          <li>Hover effects + scroll fade-in animations</li>
+          <li>LinkedIn banner image — so your profile matches your site</li>
+          <li>Bold Accent editorial style unlocked</li>
           <li>3 rounds of revisions</li>
         </ul>
         <div class="pkg-styles">
@@ -446,24 +522,24 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 <section id="preview">
   <div class="container">
     <div class="preview-header fade-in">
-      <span class="section-label">Style Preview</span>
+      <span class="section-eyebrow">Style Preview</span>
       <h2 class="section-title">See it before you commit</h2>
-      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.9rem;">Use the toggle in the top right to preview each style — or click below. Your color choice applies to any style.</p>
+      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.88rem;">Switch styles using the dropdown above, or click a card below. Pick any accent color — it works across all styles.</p>
     </div>
     <div class="preview-grid">
-      <div class="preview-card active" id="prev-a" onclick="setStyle('a','Dark Minimal',null)">
+      <div class="preview-card" id="prev-a" onclick="setStyle('a','Dark Minimal',null)">
         <div class="preview-screen preview-screen-a preview-a">
           <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
           <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
-          <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
+          <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
         <div class="preview-footer"><div class="preview-name">Dark Minimal</div><div class="preview-desc">Sharp, modern, technical — all packages</div></div>
       </div>
-      <div class="preview-card locked" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
+      <div class="preview-card active" id="prev-c" onclick="setStyle('c','Warm Cream',null)">
         <div class="preview-screen preview-screen-c preview-c">
           <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
           <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
-          <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
+          <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
         <div class="preview-footer"><div class="preview-name">Warm Cream</div><div class="preview-desc">Soft, approachable — Internship Ready+</div></div>
         <div class="preview-lock">🔒 Internship Ready+</div>
@@ -472,7 +548,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
         <div class="preview-screen preview-screen-e preview-e">
           <div class="preview-mini-nav"></div><div class="preview-mini-title"></div>
           <div class="preview-mini-sub"></div><div class="preview-mini-sub2"></div>
-          <div class="preview-mini-btn" style="background:#7C3AED;border-radius:4px"></div>
+          <div class="preview-mini-btn" style="background:#DB2777;border-radius:4px"></div>
         </div>
         <div class="preview-footer"><div class="preview-name">Bold Accent</div><div class="preview-desc">Editorial, striking — Stand Out only</div></div>
         <div class="preview-lock">🔒 Stand Out</div>
@@ -488,7 +564,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 <section id="how">
   <div class="container">
     <div class="packages-header fade-in">
-      <span class="section-label">Process</span>
+      <span class="section-eyebrow">Process</span>
       <h2 class="section-title">How it works</h2>
     </div>
     <div class="steps">
@@ -503,51 +579,51 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 <section id="portfolio">
   <div class="container">
     <div class="packages-header fade-in">
-      <span class="section-label">Portfolio</span>
+      <span class="section-eyebrow">Portfolio</span>
       <h2 class="section-title">Example sites</h2>
-      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.9rem;">Every site is personalized to you — your content, your color, your style. Click any example to see a live demo.</p>
+      <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:0.88rem;">Every site is personalized to you — your content, your color, your style. Click any example to see a live demo.</p>
     </div>
     <div class="portfolio-grid">
       <a href="template-starter.html" class="portfolio-card fade-in" onclick="return openExample('template-starter.html')">
         <div class="portfolio-thumb portfolio-thumb-a">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
-            <div style="color:#f0f0f0;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
+            <div style="color:#f0f0f0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem">Zara Voss</div>
             <div style="color:#8892a4;font-size:0.75rem">CS · UC Berkeley · 2026</div>
           </div>
         </div>
         <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Dark Minimal</div>
-          <div class="portfolio-title">Computer Science Student — Starter</div>
-          <div class="portfolio-pkg">Single page · Bio, links, resume</div>
+          <div class="portfolio-title">Computer Science — Starter</div>
+          <div class="portfolio-pkg">Single page · Bio, about, links, contact</div>
         </div>
       </a>
       <a href="template-internship-ready.html" class="portfolio-card fade-in" onclick="return openExample('template-internship-ready.html')">
         <div class="portfolio-thumb portfolio-thumb-c">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
-            <div style="color:#2C2418;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Theo Callum</div>
+            <div style="color:#2C2418;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem">Theo Callum</div>
             <div style="color:#7A6E5F;font-size:0.75rem">Marketing · Boston University · 2025</div>
           </div>
         </div>
         <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Warm Cream</div>
-          <div class="portfolio-title">Marketing Student — Internship Ready</div>
-          <div class="portfolio-pkg">Skills, projects, 4 images</div>
+          <div class="portfolio-title">Marketing — Internship Ready</div>
+          <div class="portfolio-pkg">Skills · 3 categories · 4 project cards</div>
         </div>
       </a>
       <a href="template-stand-out.html" class="portfolio-card fade-in" onclick="return openExample('template-stand-out.html')">
         <div class="portfolio-thumb portfolio-thumb-e">
           <div style="text-align:center;padding:1rem;z-index:1;position:relative">
-            <div style="color:#111;font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.3rem">Noa Reyes</div>
+            <div style="color:#111;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem">Noa Reyes</div>
             <div style="color:#555;font-size:0.75rem">Finance · NYU · 2026</div>
           </div>
         </div>
         <div class="portfolio-overlay"><div class="portfolio-overlay-btn">View example ↗</div></div>
         <div class="portfolio-info">
           <div class="portfolio-style">Bold Accent</div>
-          <div class="portfolio-title">Finance Student — Stand Out</div>
-          <div class="portfolio-pkg">2 pages · Certifications, animations, LinkedIn banner</div>
+          <div class="portfolio-title">Finance — Stand Out</div>
+          <div class="portfolio-pkg">8 images · Credentials page · LinkedIn banner</div>
         </div>
       </a>
     </div>
@@ -556,15 +632,15 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 
 <section id="faq">
   <div class="container">
-    <div class="packages-header fade-in"><span class="section-label">FAQ</span><h2 class="section-title">Common questions</h2></div>
+    <div class="packages-header fade-in"><span class="section-eyebrow">FAQ</span><h2 class="section-title">Common questions</h2></div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I pay monthly?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Never. Your site is hosted free on GitHub Pages — no subscriptions, no platform fees, nothing recurring. If you ever want a custom domain like yourname.com that's completely optional, about $12 a year paid directly to a domain registrar — nothing to do with me. I don't touch it, I don't manage it, I don't collect it.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What will my website address be?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Your site will live at a free GitHub Pages URL — something like yourname.github.io. It's a real link you can put on your resume, LinkedIn, and anywhere else. Clean, shareable, and professional. If you ever want a custom address like yourname.com you can grab one anytime through any domain registrar for about $12 a year — completely optional and nothing to do with me.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I pay monthly?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Never. Your site is hosted free on GitHub Pages — no subscriptions, no platform fees, nothing recurring. If you ever want a custom domain like yourname.com that's completely optional, about $12 a year paid directly to a domain registrar — nothing to do with me.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What will my website address be?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Your site lives at a free GitHub Pages URL — something like yourname.github.io. It's a real link you can put on your resume, LinkedIn, and anywhere else. If you ever want a custom address like yourname.com you can grab one through any domain registrar for about $12 a year — completely optional and nothing to do with me.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does it take?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Starter sites are typically delivered in 5–7 days. Internship Ready in 7–10 days. Stand Out in 10–14 days.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I update it myself?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes — you own the code on GitHub and can edit it anytime. If you'd rather have me make changes I offer updates at a flat rate per change.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What do I need to get started?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Just a free GitHub account. That's it. I'll walk you through anything you need.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I want changes after delivery?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Each package includes a set number of revision rounds during the build. Changes after delivery are available — just DM me and we'll figure out a fair rate for what you need.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this just a template or is it custom?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">It starts from a clean base but every site is personalized to you — your colors, your content, your style. No two sites look identical.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I want changes after delivery?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Each package includes revision rounds during the build. Changes after delivery are available — just DM me and we'll figure out a fair rate.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this a template or custom?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">It starts from a clean base but every site is personalized to you — your colors, your content, your style. No two sites look identical.</div></div>
     </div>
   </div>
 </section>
@@ -572,7 +648,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 <section id="contact">
   <div class="container">
     <div class="contact-inner fade-in">
-      <span class="section-label" style="display:block;text-align:center">Contact</span>
+      <span class="section-eyebrow" style="display:block;text-align:center">Contact</span>
       <h2 class="contact-title">Ready to get started?</h2>
       <p class="contact-sub">DM me on Instagram and we'll have your site live within two weeks. I'm a real person — usually reply within 24 hours.</p>
       <div class="contact-actions">
@@ -602,7 +678,7 @@ const colors=[
   {name:'Sky',hex:'#0284C7'},{name:'Rose',hex:'#DB2777'},
   {name:'Slate',hex:'#475569'},{name:'Noir',hex:'#1a1a1a'},
 ];
-let activeColor='#7C3AED';
+let activeColor='#DB2777';
 
 function buildSwatches(){
   const el=document.getElementById('navSwatches');
@@ -630,6 +706,7 @@ function buildPalette(){
 function setColor(hex){
   activeColor=hex;
   document.documentElement.style.setProperty('--accent',hex);
+  document.documentElement.style.setProperty('--accent-dark',hex);
   document.querySelectorAll('.swatch').forEach(s=>s.classList.toggle('active',s.style.background===hex||s.style.backgroundColor===hex));
   document.querySelectorAll('.palette-swatch').forEach(s=>s.classList.toggle('active',s.style.background===hex));
   document.querySelectorAll('.preview-mini-btn').forEach(b=>b.style.background=hex);
@@ -655,19 +732,10 @@ function closeDropdown(){
 }
 document.addEventListener('click',e=>{if(!e.target.closest('.style-selector'))closeDropdown();});
 function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
+function openExample(url){window.open(url,'_blank');return false;}
 
-/* Open example in new tab via JS so window.opener is set — allows window.close() on template pages */
-function openExample(url){
-  window.open(url,'_blank');
-  return false;
-}
-
-/* CAROUSEL — smooth fade, no blur */
-let currentCard=0;
-const totalCards=3;
-let carouselTimer;
-let isTransitioning=false;
-
+// CAROUSEL
+let currentCard=0;const totalCards=3;let carouselTimer;let isTransitioning=false;
 function goToCard(index){
   if(isTransitioning||index===currentCard)return;
   isTransitioning=true;
@@ -676,35 +744,18 @@ function goToCard(index){
   const dots=document.querySelectorAll('.carousel-dot');
   dots[currentCard].classList.remove('active');
   dots[index].classList.add('active');
-  /* fade out current */
-  prev.style.transition='opacity 0.5s ease, transform 0.5s ease';
-  prev.style.opacity='0';
-  prev.style.transform='translateY(-6px)';
+  prev.style.transition='opacity 0.5s ease,transform 0.5s ease';
+  prev.style.opacity='0';prev.style.transform='translateY(-6px)';
   setTimeout(()=>{
-    prev.classList.remove('active');
-    prev.style.position='absolute';
-    prev.style.opacity='';
-    prev.style.transform='';
-    /* fade in next */
-    next.style.opacity='0';
-    next.style.transform='translateY(6px)';
-    next.style.transition='none';
-    next.classList.add('active');
-    next.style.position='relative';
-    requestAnimationFrame(()=>{
-      requestAnimationFrame(()=>{
-        next.style.transition='opacity 0.5s ease, transform 0.5s ease';
-        next.style.opacity='1';
-        next.style.transform='translateY(0)';
-        setTimeout(()=>{
-          next.style.transition='';
-          next.style.opacity='';
-          next.style.transform='';
-          currentCard=index;
-          isTransitioning=false;
-        },520);
-      });
-    });
+    prev.classList.remove('active');prev.style.position='absolute';
+    prev.style.opacity='';prev.style.transform='';
+    next.style.opacity='0';next.style.transform='translateY(6px)';
+    next.style.transition='none';next.classList.add('active');next.style.position='relative';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      next.style.transition='opacity 0.5s ease,transform 0.5s ease';
+      next.style.opacity='1';next.style.transform='translateY(0)';
+      setTimeout(()=>{next.style.transition='';next.style.opacity='';next.style.transform='';currentCard=index;isTransitioning=false;},520);
+    }));
   },520);
   resetTimer();
 }
@@ -712,12 +763,31 @@ function nextCard(){goToCard((currentCard+1)%totalCards);}
 function resetTimer(){clearInterval(carouselTimer);carouselTimer=setInterval(nextCard,3500);}
 carouselTimer=setInterval(nextCard,3500);
 
-/* SCROLL FADE */
+// Set initial color
+document.documentElement.style.setProperty('--accent','#DB2777');
+document.documentElement.style.setProperty('--accent-dark','#be185d');
+
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+buildSwatches();buildPalette();
 
-buildSwatches();
-buildPalette();
+function toggleMobileNav(){
+  const nav=document.getElementById('mobileNav');
+  const btn=document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+// close mobile nav on outside click
+document.addEventListener('click',e=>{
+  if(!e.target.closest('nav')&&!e.target.closest('.mobile-nav')){
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>
