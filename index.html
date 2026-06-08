@@ -307,6 +307,30 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .hint-bubble{position:fixed;z-index:500;pointer-events:none;opacity:0;transition:opacity 0.35s ease;transform:translateX(-50%);}
 .hint-bubble.visible{opacity:1;}
 .hint-bubble-label{background:#FFFFFF;color:#111111;font-size:0.78rem;font-weight:700;padding:7px 16px;border-radius:20px;white-space:nowrap;font-family:'Inter',sans-serif;letter-spacing:0.03em;box-shadow:0 2px 12px rgba(0,0,0,0.12);border:2px solid var(--accent);}
+
+/* ── MOBILE NAV CONTROLS ── */
+.mobile-nav-divider{border-top:1px solid var(--border);margin:0.5rem 0 1rem;}
+.mobile-nav-controls{padding-bottom:0.5rem;}
+.mobile-nav-label{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+.mobile-style-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.mobile-style-pill{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;padding:0.45rem 0.9rem;border-radius:20px;cursor:pointer;transition:all 0.2s;min-height:38px;}
+.mobile-style-pill:hover{border-color:var(--accent);color:var(--accent);}
+.mobile-style-pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.mobile-color-swatches{display:flex;flex-wrap:wrap;gap:10px;padding:4px 0;}
+.mobile-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s,border-color 0.15s;flex-shrink:0;}
+.mobile-swatch:hover{transform:scale(1.2);}
+.mobile-swatch.active{border-color:var(--text);transform:scale(1.15);}
+
+/* Keep desktop nav controls visible on desktop, hide on mobile */
+@media(max-width:768px){
+  .color-swatches{display:none !important;}
+  .style-selector{display:none !important;}
+}
+/* On desktop keep as is — no change needed */
+@media(min-width:769px){
+  .mobile-nav-controls{display:none;}
+  .mobile-nav-divider{display:none;}
+}
 </style>
 </head>
 <body class="style-b">
@@ -358,6 +382,18 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   <a href="#how" onclick="closeMobileNav()">How It Works</a>
   <a href="#faq" onclick="closeMobileNav()">FAQ</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <div class="mobile-nav-divider"></div>
+  <div class="mobile-nav-controls">
+    <div class="mobile-nav-label">Style</div>
+    <div class="mobile-style-pills" id="mobileStylePills">
+      <button class="mobile-style-pill active" onclick="setStyle('b','Clean White',null);updateMobileStylePills('b')">Clean White</button>
+      <button class="mobile-style-pill" onclick="setStyle('c','Warm Cream',null);updateMobileStylePills('c')">Warm Cream</button>
+      <button class="mobile-style-pill" onclick="setStyle('a','Dark Minimal',null);updateMobileStylePills('a')">Dark Minimal</button>
+      <button class="mobile-style-pill" onclick="setStyle('e','Bold Accent',null);updateMobileStylePills('e')">Bold Accent</button>
+    </div>
+    <div class="mobile-nav-label" style="margin-top:14px;">Accent Color</div>
+    <div class="mobile-color-swatches" id="mobileSwatches"></div>
+  </div>
 </div>
 
 <section id="hero">
@@ -741,6 +777,7 @@ function setColor(hex){
   document.querySelectorAll('.swatch').forEach(s=>s.classList.toggle('active',s.style.background===hex||s.style.backgroundColor===hex));
   document.querySelectorAll('.palette-swatch').forEach(s=>s.classList.toggle('active',s.style.background===hex));
   document.querySelectorAll('.preview-mini-btn').forEach(b=>b.style.background=hex);
+  document.querySelectorAll('.mobile-swatch').forEach(s=>s.classList.toggle('active',s.style.background===hex||s.style.backgroundColor===hex));
 }
 function setStyle(style,label,optionEl){
   document.body.className='style-'+style;
@@ -802,7 +839,7 @@ document.documentElement.style.setProperty('--accent-dark','#be185d');
 
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-buildSwatches();buildPalette();
+buildSwatches();buildPalette();buildMobileSwatches();
 
 function toggleMobileNav(){
   const nav=document.getElementById('mobileNav');
@@ -869,6 +906,40 @@ document.addEventListener('click',e=>{
     }, 2200);
   }, 1000);
 })();
+
+
+// Mobile style pills sync
+function updateMobileStylePills(style) {
+  document.querySelectorAll('.mobile-style-pill').forEach(p => p.classList.remove('active'));
+  const styleMap = {'b':'Clean White','c':'Warm Cream','a':'Dark Minimal','e':'Bold Accent'};
+  document.querySelectorAll('.mobile-style-pill').forEach(p => {
+    if(p.textContent.trim() === styleMap[style]) p.classList.add('active');
+  });
+  // also sync desktop dropdown label
+  document.getElementById('styleBtnLabel').textContent = styleMap[style];
+  document.querySelectorAll('.style-option').forEach(o => o.classList.remove('active'));
+}
+
+// Build mobile color swatches
+function buildMobileSwatches() {
+  const el = document.getElementById('mobileSwatches');
+  if(!el) return;
+  el.innerHTML = '';
+  colors.forEach(c => {
+    const s = document.createElement('div');
+    s.className = 'mobile-swatch' + (c.hex === activeColor ? ' active' : '');
+    s.style.background = c.hex;
+    s.title = c.name;
+    s.onclick = () => {
+      setColor(c.hex);
+      // sync mobile swatch active states
+      document.querySelectorAll('.mobile-swatch').forEach(sw => {
+        sw.classList.toggle('active', sw.style.background === c.hex || sw.style.backgroundColor === c.hex);
+      });
+    };
+    el.appendChild(s);
+  });
+}
 
 </script>
 
