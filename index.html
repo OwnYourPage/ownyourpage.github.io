@@ -862,49 +862,78 @@ document.addEventListener('click',e=>{
 // ── ONBOARDING ANIMATION — runs every page load ──
 (function(){
   setTimeout(()=>{
-    const styleBtn = document.getElementById('styleBtn');
-    const swatches = document.getElementById('navSwatches');
-    if(!styleBtn || !swatches) return;
+    const isMobile = window.innerWidth <= 768;
 
-    // Phase 1: highlight style toggle with label — centered below button
-    const hintStyle = document.getElementById('hintStyle');
-    const btnRect = styleBtn.getBoundingClientRect();
-    hintStyle.style.top = (btnRect.bottom + 10) + 'px';
-    hintStyle.style.left = (btnRect.left + btnRect.width/2) + 'px';
+    if(isMobile){
+      // On mobile: highlight hamburger button
+      const hamburger = document.getElementById('hamburger');
+      if(!hamburger) return;
+      const hintStyle = document.getElementById('hintStyle');
+      const hRect = hamburger.getBoundingClientRect();
+      const bubbleW = 160;
+      let left = hRect.left + hRect.width/2;
+      left = Math.max(bubbleW/2+10, Math.min(window.innerWidth-bubbleW/2-10, left));
+      hintStyle.style.top = (hRect.bottom+10)+'px';
+      hintStyle.style.left = left+'px';
+      hintStyle.querySelector('.hint-bubble-label').textContent = 'Tap for styles & colors';
+      hintStyle.classList.add('visible');
+      hamburger.style.transition='box-shadow 0.3s,transform 0.3s';
+      hamburger.style.boxShadow='0 0 0 3px var(--accent),0 0 16px color-mix(in srgb,var(--accent) 40%,transparent)';
+      hamburger.style.transform='scale(1.15)';
+      setTimeout(()=>{
+        hamburger.style.boxShadow='';
+        hamburger.style.transform='';
+        hintStyle.classList.remove('visible');
+      },2200);
+      return;
+    }
+
+    // Desktop: highlight style button then swatches
+    const styleBtn=document.getElementById('styleBtn');
+    const swatches=document.getElementById('navSwatches');
+    if(!styleBtn||!swatches) return;
+    const bubbleW=120;
+
+    // Phase 1 — style button
+    const hintStyle=document.getElementById('hintStyle');
+    const btnRect=styleBtn.getBoundingClientRect();
+    let leftS=btnRect.left+btnRect.width/2;
+    leftS=Math.max(bubbleW/2+10,Math.min(window.innerWidth-bubbleW/2-10,leftS));
+    hintStyle.style.top=(btnRect.bottom+10)+'px';
+    hintStyle.style.left=leftS+'px';
+    hintStyle.querySelector('.hint-bubble-label').textContent='Try a style';
     hintStyle.classList.add('visible');
-    styleBtn.style.transition = 'box-shadow 0.3s, transform 0.3s';
-    styleBtn.style.boxShadow = '0 0 0 3px var(--accent), 0 0 16px color-mix(in srgb,var(--accent) 40%,transparent)';
-    styleBtn.style.transform = 'scale(1.08)';
+    styleBtn.style.transition='box-shadow 0.3s,transform 0.3s';
+    styleBtn.style.boxShadow='0 0 0 3px var(--accent),0 0 16px color-mix(in srgb,var(--accent) 40%,transparent)';
+    styleBtn.style.transform='scale(1.08)';
 
     setTimeout(()=>{
-      styleBtn.style.boxShadow = '';
-      styleBtn.style.transform = '';
+      styleBtn.style.boxShadow='';
+      styleBtn.style.transform='';
       hintStyle.classList.remove('visible');
 
-      // Phase 2: highlight color swatches
-      const hintColor = document.getElementById('hintColor');
-      const swRect = swatches.getBoundingClientRect();
-      hintColor.style.top = (swRect.bottom + 10) + 'px';
-      hintColor.style.left = (swRect.left + swRect.width/2) + 'px';
+      // Phase 2 — swatches
+      const hintColor=document.getElementById('hintColor');
+      const swRect=swatches.getBoundingClientRect();
+      let leftC=swRect.left+swRect.width/2;
+      leftC=Math.max(bubbleW/2+10,Math.min(window.innerWidth-bubbleW/2-10,leftC));
+      hintColor.style.top=(swRect.bottom+10)+'px';
+      hintColor.style.left=leftC+'px';
+      hintColor.querySelector('.hint-bubble-label').textContent='Pick a color';
       hintColor.classList.add('visible');
 
-      // Ripple through swatches
-      const allSwatches = swatches.querySelectorAll('.swatch');
+      const allSwatches=swatches.querySelectorAll('.swatch');
       allSwatches.forEach((s,i)=>{
         setTimeout(()=>{
-          s.style.transition = 'transform 0.2s, box-shadow 0.2s';
-          s.style.transform = 'scale(1.35)';
-          s.style.boxShadow = '0 0 0 3px var(--text), 0 4px 12px rgba(0,0,0,0.2)';
-          setTimeout(()=>{
-            s.style.transform = '';
-            s.style.boxShadow = '';
-          }, 300);
-        }, i * 100);
+          s.style.transition='transform 0.2s,box-shadow 0.2s';
+          s.style.transform='scale(1.35)';
+          s.style.boxShadow='0 0 0 3px var(--text),0 4px 12px rgba(0,0,0,0.2)';
+          setTimeout(()=>{s.style.transform='';s.style.boxShadow='';},300);
+        },i*100);
       });
-
-      setTimeout(()=>hintColor.classList.remove('visible'), allSwatches.length * 100 + 800);
-    }, 2200);
-  }, 1000);
+      setTimeout(()=>hintColor.classList.remove('visible'),allSwatches.length*100+800);
+    },2200);
+  },1000);
 })();
 
 
