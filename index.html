@@ -236,15 +236,29 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .footer-links a:hover{color:var(--accent);}
 
 @media(max-width:768px){
+  /* NAV — logo left, hamburger right, nothing else */
   .nav-links{display:none;}
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-visual{display:none;}
-  .about-inner{grid-template-columns:1fr;}
+  .nav-controls{display:none !important;}
+  .hamburger{display:flex !important;}
+  .nav-inner{padding:0 1.25rem;justify-content:space-between;gap:0;}
+  .nav-logo{flex:none;}
+  /* LAYOUT */
+  .container{padding:0 1.25rem;}
+  .hero-inner{grid-template-columns:1fr;gap:2rem;}
+  .hero-visual{display:flex !important;}
+  .hero-carousel{max-width:100%;}
+  .carousel-track{min-height:240px;}
+  .about-inner{grid-template-columns:1fr;gap:2rem;}
+  .about-photo{aspect-ratio:3/4;max-height:340px;}
   .packages-grid{grid-template-columns:1fr;}
   .preview-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr 1fr;}
+  .steps{grid-template-columns:1fr 1fr;gap:1.5rem;}
   .portfolio-grid{grid-template-columns:1fr;}
-  .nav-inner,.container{padding:0 1rem;}
+  .footer-inner{flex-direction:column;text-align:center;gap:0.75rem;}
+  .footer-links{justify-content:center;}
+  body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
+  .btn,.pkg-cta,.faq-q{min-height:44px;}
+  section{padding:3.5rem 0;}
   body.style-e #hero,body.style-e #packages,body.style-e #preview,body.style-e #how,body.style-e #portfolio,body.style-e #faq,body.style-e #contact{border-left:none;border-top:4px solid var(--accent);}
 }
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
@@ -262,29 +276,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .mobile-nav a:last-child{border-bottom:none;}
 .mobile-nav a:hover,.mobile-nav a:active{color:var(--accent);}
 
-@media(max-width:768px){
-  .hamburger{display:flex;}
-  .color-swatches{display:none;}
-  .style-btn span{display:none;}
-  .style-btn{padding:0.4rem 0.5rem;}
-  body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
-  .btn,.pkg-cta,.faq-q{min-height:44px;}
-  section{padding:3.5rem 0;}
-  .nav-inner,.container{padding:0 1.25rem;}
-  .hero-inner{grid-template-columns:1fr;gap:2rem;}
-  .hero-visual{display:flex !important;}
-  .hero-carousel{max-width:100%;}
-  .carousel-track{min-height:240px;}
-  .about-inner{grid-template-columns:1fr;gap:2rem;}
-  .about-photo{aspect-ratio:3/4;max-height:340px;}
-  .packages-grid{grid-template-columns:1fr;}
-  .preview-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr 1fr;gap:1.5rem;}
-  .portfolio-grid{grid-template-columns:1fr;}
-  .footer-inner{flex-direction:column;text-align:center;gap:0.75rem;}
-  .footer-links{justify-content:center;}
-  body.style-e #hero,body.style-e #packages,body.style-e #preview,body.style-e #how,body.style-e #portfolio,body.style-e #faq,body.style-e #contact{border-left:none;border-top:4px solid var(--accent);}
-}
+/* duplicate mobile block removed */
 @media(max-width:480px){
   .steps{grid-template-columns:1fr;}
   .about-stats{flex-direction:column;gap:1.25rem;}
@@ -293,12 +285,20 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
   .contact-actions .btn{width:100%;}
   .pkg-style-pills{flex-wrap:wrap;}
   .hero-title{font-size:2.4rem;}
+  .preview-grid{grid-template-columns:1fr;}
 }
 @media(max-height:500px) and (orientation:landscape){
   #hero{min-height:auto;padding-bottom:3rem;}
   .hero-visual{display:none !important;}
   section{padding:2.5rem 0;}
   .carousel-track{min-height:180px;}
+  /* Nav stays single row, no overflow */
+  .nav-inner{height:52px;padding:0 1rem;}
+  /* Steps single column so no overflow */
+  .steps{grid-template-columns:1fr 1fr;gap:1rem;}
+  .step-desc{font-size:0.75rem;}
+  /* Prevent horizontal overflow */
+  body{overflow-x:hidden;}
 }
 
 /* ── ONBOARDING ANIMATION ── */
@@ -322,10 +322,7 @@ footer{border-top:1px solid var(--border);padding:2rem;transition:border-color v
 .mobile-swatch.active{border-color:var(--text);transform:scale(1.15);}
 
 /* Keep desktop nav controls visible on desktop, hide on mobile */
-@media(max-width:768px){
-  .color-swatches{display:none !important;}
-  .style-selector{display:none !important;}
-}
+/* merged into main mobile block */
 /* On desktop keep as is — no change needed */
 @media(min-width:769px){
   .mobile-nav-controls{display:none;}
